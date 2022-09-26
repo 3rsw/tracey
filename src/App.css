@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.code_n_arrow {
+  display: flex; 
+
+}
+
+.even_spacing {
+    line-height: .7em !important;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    font-family: Roboto Mono, monospace; 
+    padding-top: .8em;;
+}
+
+.lol {
+  display: flex;
+}
+
+.console {
+  background-color: black;
+  color: greenyellow;
+}

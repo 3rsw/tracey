@@ -1,0 +1,519 @@
+[
+{
+    "line":1,
+    "vars": null,
+    "branch": null,
+    "print": null,
+    "return": null
+},
+{
+    "line": 2,
+    "vars":   [
+                {   
+                    "name": "values",
+                    "data": [3, 6, 9],
+                    "updated": true
+                }
+            ],
+    "branch": null,
+    "print": null,
+    "return": null
+},
+{
+    "line": 3,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 0,
+            "updated": true
+
+        }
+    ],
+    "branch": null,
+    "print": null,
+    "return": null
+},
+{
+    "line": 4,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 0,
+            "updated": false
+
+        },
+        {
+            "name": "i",
+            "data": 2,
+            "updated": true
+        }
+    ],
+    "branch": null,
+    "print": null,
+    "return": null
+},
+{
+    "line": 5,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 0,
+            "updated": false
+
+        },
+        {
+            "name": "i",
+            "data": 2,
+            "updated": false
+        },
+        {
+            "name": "mul",
+            "data": 1,
+            "updated": true
+        }
+    ],
+    "branch": null,
+    "print": null,
+    "return": null
+},
+{
+    "line": 6,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 0,
+            "updated": false
+        },
+        {
+            "name": "i",
+            "data": 2,
+            "updated": false
+        },
+        {
+            "name": "mul",
+            "data": 1,
+            "updated": false
+        }
+    ],
+    "branch": {"correct": 7, "incorrect": 11},
+    "print": null,
+    "return": null
+},
+{
+    "line": 7,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 9,
+            "updated": true
+        },
+        {
+            "name": "i",
+            "data": 2,
+            "updated": false
+        },
+        {
+            "name": "mul",
+            "data": 1,
+            "updated": false
+        }
+    ],
+    "branch": null,
+    "print": null,
+    "return": null
+},
+{
+    "line": 8,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 9,
+            "updated": false
+        },
+        {
+            "name": "i",
+            "data": 2,
+            "updated": false
+        },
+        {
+            "name": "mul",
+            "data": 10,
+            "updated": true
+        }
+    ],
+    "branch": null,
+    "print": null,
+    "return": null
+},
+{
+    "line": 9,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 9,
+            "updated": false
+        },
+        {
+            "name": "i",
+            "data": 1,
+            "updated": true
+        },
+        {
+            "name": "mul",
+            "data": 10,
+            "updated": false
+        }
+    ],
+    "branch": null,
+    "print": null,
+    "return": null
+},
+{
+    "line": 6,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 9,
+            "updated": false
+        },
+        {
+            "name": "i",
+            "data": 1,
+            "updated": false
+        },
+        {
+            "name": "mul",
+            "data": 10,
+            "updated": false
+        }
+    ],
+    "branch": {"correct": 7, "incorrect": 11},
+    "print": null,
+    "return": null
+},
+{
+    "line": 7,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 69,
+            "updated": true
+        },
+        {
+            "name": "i",
+            "data": 1,
+            "updated": false
+        },
+        {
+            "name": "mul",
+            "data": 10,
+            "updated": false
+        }
+    ],
+    "branch": null,
+    "print": null,
+    "return": null
+},
+{
+    "line": 8,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 69,
+            "updated": false
+        },
+        {
+            "name": "i",
+            "data": 1,
+            "updated": false
+        },
+        {
+            "name": "mul",
+            "data": 100,
+            "updated": true
+        }
+    ],
+    "branch": null,
+    "print": null,
+    "return": null
+},
+{
+    "line": 9,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 69,
+            "updated": false
+        },
+        {
+            "name": "i",
+            "data": 0,
+            "updated": true
+        },
+        {
+            "name": "mul",
+            "data": 100,
+            "updated": false
+        }
+    ],
+    "branch": null,
+    "print": null,
+    "return": null
+},
+{
+    "line": 6,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 69,
+            "updated": false
+        },
+        {
+            "name": "i",
+            "data": 0,
+            "updated": false
+        },
+        {
+            "name": "mul",
+            "data": 100,
+            "updated": false
+        }
+    ],
+    "branch": {"correct": 7, "incorrect": 11},
+    "print": null,
+    "return": null
+},
+{
+    "line": 7,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 369,
+            "updated": true
+        },
+        {
+            "name": "i",
+            "data": 0,
+            "updated": false
+        },
+        {
+            "name": "mul",
+            "data": 100,
+            "updated": false
+        }
+    ],
+    "branch": null,
+    "print": null,
+    "return": null
+},
+{
+    "line": 8,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 369,
+            "updated": false
+        },
+        {
+            "name": "i",
+            "data": 0,
+            "updated": false
+        },
+        {
+            "name": "mul",
+            "data": 1000,
+            "updated": true
+        }
+    ],
+    "branch": null,
+    "print": null,
+    "return": null
+},
+{
+    "line": 9,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 369,
+            "updated": false
+        },
+        {
+            "name": "i",
+            "data": -1,
+            "updated": true
+        },
+        {
+            "name": "mul",
+            "data": 1000,
+            "updated": false
+        }
+    ],
+    "branch": null,
+    "print": null,
+    "return": null
+},
+{
+    "line": 6,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 369,
+            "updated": false
+        },
+        {
+            "name": "i",
+            "data": -1,
+            "updated": false
+        },
+        {
+            "name": "mul",
+            "data": 1000,
+            "updated": false
+        }
+    ],
+    "branch": {"correct": 11, "incorrect": 7},
+    "print": null,
+    "return": null
+},
+{
+    "line": 11,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 369,
+            "updated": false
+        },
+        {
+            "name": "i",
+            "data": -1,
+            "updated": false
+        },
+        {
+            "name": "mul",
+            "data": 1000,
+            "updated": false
+        }
+    ],
+    "branch": null,
+    "print": "The result is 369",
+    "return": null
+},
+{
+    "line": 12,
+    "vars":   [
+        {   
+            "name": "values",
+            "data": [3, 6, 9],
+            "updated": false
+        },
+        {
+            "name": "result",
+            "data": 369,
+            "updated": false
+        },
+        {
+            "name": "i",
+            "data": -1,
+            "updated": false
+        },
+        {
+            "name": "mul",
+            "data": 1000,
+            "updated": false
+        }
+    ],
+    "branch": null,
+    "print": null,
+    "return": 0
+}
+
+
+
+
+
+]
