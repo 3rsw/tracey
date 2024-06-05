@@ -1,0 +1,14 @@
+{
+    "vars": [
+        {
+            "function": "main",
+            "decs": {
+                "values": 6,
+                "result": 7,
+                "i": 8,
+                "mul": 1
+            },
+            "params": []
+        }
+    ]
+}

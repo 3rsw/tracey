@@ -1,0 +1,42 @@
+{
+    "flow": [
+        {
+            "line": 8,
+            "branch": [
+                9,
+                14
+            ],
+            "conditions": [
+                {
+                    "start": 11,
+                    "end": 27,
+                    "contents": "name[i] != '\\0'"
+                }
+            ]
+        },
+        {
+            "line": 9,
+            "branch": [
+                10,
+                12
+            ],
+            "conditions": [
+                {
+                    "start": 13,
+                    "end": 27,
+                    "contents": "name[i] > 'a'"
+                },
+                {
+                    "start": 32,
+                    "end": 46,
+                    "contents": "name[i] < 'z'"
+                },
+                {
+                    "start": 12,
+                    "end": 47,
+                    "contents": "(name[i] > 'a') && (name[i] < 'z')"
+                }
+            ]
+        }
+    ]
+}

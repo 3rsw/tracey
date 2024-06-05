@@ -1,0 +1,2024 @@
+{
+    "code": "\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void) {\n    int values[3] = {3, 6, 9};\n    int result = 0;\n    int i = 2;\n    int mul = 1;\n    while (i >= 0) {\n        result += values[i] * mul;\n        mul *= 10;\n        i--;  \n    }\n    printf(\"The result is %d\", result);\n    return 0;\n}",
+    "trace": [
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 5,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BC4",
+                            "int",
+                            "<UNINITIALIZED>",
+                            {
+                                "bytes": 4
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            "<UNINITIALIZED>",
+                            {
+                                "bytes": 4
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC0",
+                            "int",
+                            "<UNINITIALIZED>",
+                            {
+                                "bytes": 4
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BCC",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BD8"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BCC",
+                                "int",
+                                "<UNINITIALIZED>",
+                                {
+                                    "bytes": 4
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD0",
+                                "int",
+                                "<UNINITIALIZED>",
+                                {
+                                    "bytes": 4
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                "<UNINITIALIZED>",
+                                {
+                                    "bytes": 4
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 5,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 6,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            "<UNINITIALIZED>",
+                            {
+                                "bytes": 4
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            "<UNINITIALIZED>",
+                            {
+                                "bytes": 4
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            "<UNINITIALIZED>",
+                            {
+                                "bytes": 4
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                "<UNINITIALIZED>",
+                                {
+                                    "bytes": 4
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                "<UNINITIALIZED>",
+                                {
+                                    "bytes": 4
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                "<UNINITIALIZED>",
+                                {
+                                    "bytes": 4
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 6,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 7,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            "<UNINITIALIZED>",
+                            {
+                                "bytes": 4
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            "<UNINITIALIZED>",
+                            {
+                                "bytes": 4
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            "<UNINITIALIZED>",
+                            {
+                                "bytes": 4
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 7,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 8,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            "<UNINITIALIZED>",
+                            {
+                                "bytes": 4
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            "<UNINITIALIZED>",
+                            {
+                                "bytes": 4
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            0,
+                            {
+                                "bytes": 4,
+                                "hex": "00000000"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 8,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 9,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            2,
+                            {
+                                "bytes": 4,
+                                "hex": "00000002"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            "<UNINITIALIZED>",
+                            {
+                                "bytes": 4
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            0,
+                            {
+                                "bytes": 4,
+                                "hex": "00000000"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 9,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 10,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            2,
+                            {
+                                "bytes": 4,
+                                "hex": "00000002"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            1,
+                            {
+                                "bytes": 4,
+                                "hex": "00000001"
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            0,
+                            {
+                                "bytes": 4,
+                                "hex": "00000000"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 9,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 11,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            2,
+                            {
+                                "bytes": 4,
+                                "hex": "00000002"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            1,
+                            {
+                                "bytes": 4,
+                                "hex": "00000001"
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            0,
+                            {
+                                "bytes": 4,
+                                "hex": "00000000"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 11,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 12,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            2,
+                            {
+                                "bytes": 4,
+                                "hex": "00000002"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            1,
+                            {
+                                "bytes": 4,
+                                "hex": "00000001"
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            9,
+                            {
+                                "bytes": 4,
+                                "hex": "00000009"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 12,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 13,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            2,
+                            {
+                                "bytes": 4,
+                                "hex": "00000002"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            10,
+                            {
+                                "bytes": 4,
+                                "hex": "0000000A"
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            9,
+                            {
+                                "bytes": 4,
+                                "hex": "00000009"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 13,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 10,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            1,
+                            {
+                                "bytes": 4,
+                                "hex": "00000001"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            10,
+                            {
+                                "bytes": 4,
+                                "hex": "0000000A"
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            9,
+                            {
+                                "bytes": 4,
+                                "hex": "00000009"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 10,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 11,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            1,
+                            {
+                                "bytes": 4,
+                                "hex": "00000001"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            10,
+                            {
+                                "bytes": 4,
+                                "hex": "0000000A"
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            9,
+                            {
+                                "bytes": 4,
+                                "hex": "00000009"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 11,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 12,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            1,
+                            {
+                                "bytes": 4,
+                                "hex": "00000001"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            10,
+                            {
+                                "bytes": 4,
+                                "hex": "0000000A"
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            69,
+                            {
+                                "bytes": 4,
+                                "hex": "00000045"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 12,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 13,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            1,
+                            {
+                                "bytes": 4,
+                                "hex": "00000001"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            100,
+                            {
+                                "bytes": 4,
+                                "hex": "00000064"
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            69,
+                            {
+                                "bytes": 4,
+                                "hex": "00000045"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 13,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 10,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            0,
+                            {
+                                "bytes": 4,
+                                "hex": "00000000"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            100,
+                            {
+                                "bytes": 4,
+                                "hex": "00000064"
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            69,
+                            {
+                                "bytes": 4,
+                                "hex": "00000045"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 10,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 11,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            0,
+                            {
+                                "bytes": 4,
+                                "hex": "00000000"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            100,
+                            {
+                                "bytes": 4,
+                                "hex": "00000064"
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            69,
+                            {
+                                "bytes": 4,
+                                "hex": "00000045"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 11,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 12,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            0,
+                            {
+                                "bytes": 4,
+                                "hex": "00000000"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            100,
+                            {
+                                "bytes": 4,
+                                "hex": "00000064"
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            369,
+                            {
+                                "bytes": 4,
+                                "hex": "00000171"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 12,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 13,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            0,
+                            {
+                                "bytes": 4,
+                                "hex": "00000000"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            1000,
+                            {
+                                "bytes": 4,
+                                "hex": "000003E8"
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            369,
+                            {
+                                "bytes": 4,
+                                "hex": "00000171"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 13,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 10,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            -1,
+                            {
+                                "bytes": 4,
+                                "hex": "FFFFFFFF"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            1000,
+                            {
+                                "bytes": 4,
+                                "hex": "000003E8"
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            369,
+                            {
+                                "bytes": 4,
+                                "hex": "00000171"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 10,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 15,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            -1,
+                            {
+                                "bytes": 4,
+                                "hex": "FFFFFFFF"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            1000,
+                            {
+                                "bytes": 4,
+                                "hex": "000003E8"
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            369,
+                            {
+                                "bytes": 4,
+                                "hex": "00000171"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 15,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": ""
+        },
+        {
+            "event": "step_line",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 16,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            -1,
+                            {
+                                "bytes": 4,
+                                "hex": "FFFFFFFF"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            1000,
+                            {
+                                "bytes": 4,
+                                "hex": "000003E8"
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            369,
+                            {
+                                "bytes": 4,
+                                "hex": "00000171"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 16,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": "The result is 369"
+        },
+        {
+            "event": "return",
+            "func_name": "main",
+            "globals": {},
+            "heap": {},
+            "line": 17,
+            "ordered_globals": [],
+            "stack_to_render": [
+                {
+                    "encoded_locals": {
+                        "i": [
+                            "C_DATA",
+                            "0xFFF000BCC",
+                            "int",
+                            -1,
+                            {
+                                "bytes": 4,
+                                "hex": "FFFFFFFF"
+                            }
+                        ],
+                        "mul": [
+                            "C_DATA",
+                            "0xFFF000BD0",
+                            "int",
+                            1000,
+                            {
+                                "bytes": 4,
+                                "hex": "000003E8"
+                            }
+                        ],
+                        "result": [
+                            "C_DATA",
+                            "0xFFF000BC8",
+                            "int",
+                            369,
+                            {
+                                "bytes": 4,
+                                "hex": "00000171"
+                            }
+                        ],
+                        "values": [
+                            "C_ARRAY",
+                            "0xFFF000BD4",
+                            {
+                                "elt_bytes": 4,
+                                "oob_addr": "0xFFF000BE0"
+                            },
+                            [
+                                "C_DATA",
+                                "0xFFF000BD4",
+                                "int",
+                                3,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000003"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BD8",
+                                "int",
+                                6,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000006"
+                                }
+                            ],
+                            [
+                                "C_DATA",
+                                "0xFFF000BDC",
+                                "int",
+                                9,
+                                {
+                                    "bytes": 4,
+                                    "hex": "00000009"
+                                }
+                            ]
+                        ]
+                    },
+                    "frame_id": "0xFFF000BE0",
+                    "func_name": "main",
+                    "is_highlighted": true,
+                    "is_parent": false,
+                    "is_zombie": false,
+                    "line": 17,
+                    "ordered_varnames": [
+                        "values",
+                        "result",
+                        "i",
+                        "mul"
+                    ],
+                    "parent_frame_id_list": [],
+                    "unique_hash": "main_0xFFF000BE0"
+                }
+            ],
+            "stdout": "The result is 369"
+        }
+    ]
+}

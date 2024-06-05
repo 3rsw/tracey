@@ -1,0 +1,18 @@
+{
+    "vars": [
+        {
+            "function": "main",
+            "decs": {
+                "a": 11,
+                "b": 12
+            }
+        },
+        {
+            "function": "zero",
+            "decs": {},
+            "params": [
+                "a_val"
+            ]
+        }
+    ]
+}
