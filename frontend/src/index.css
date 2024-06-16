@@ -48,3 +48,13 @@ tfoot tr {
 .false {
   border: 1px solid red;
 }
+
+.changedThisStep {
+  font-weight: bold;
+  color: darkorange;
+}
+
+.notChangedThisStep {
+  font-weight: lighter;
+  color: black;
+}

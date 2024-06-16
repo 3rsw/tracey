@@ -2,11 +2,11 @@ import CodeEditor, { SelectionText } from "@uiw/react-textarea-code-editor";
 import rehypePrism from "rehype-prism-plus";
 import rehypeRewrite from "rehype-rewrite";
 
-const Line = ({ id, line, index, selected, boxes }) => {
+const Line = ({ line, index, selected, boxes }) => {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
         <span
-          id={`arrow${id}`}
+          id={`arrowline${index + 1}`}
           style={{
             width: "20px",
             textAlign: "center",
@@ -16,9 +16,9 @@ const Line = ({ id, line, index, selected, boxes }) => {
         >
           {selected ? "➤" : ""}
         </span>
-        <span id={`false${id}`} style={{width: "10px"}}></span>
-        <span id={`true${id}`}  style={{width: "10px"}}></span>
-        <div id={id} style={{ display: "inline-flex", alignItems: "center" }}>
+        <span id={`falseline${index + 1}`} style={{width: "10px"}}></span>
+        <span id={`trueline${index + 1}`}  style={{width: "10px"}}></span>
+        <div id={`line${index + 1}`} style={{ display: "inline-flex", alignItems: "center" }}>
             <CodeEditor
             value={line}
             language="c"
@@ -38,7 +38,7 @@ const Line = ({ id, line, index, selected, boxes }) => {
                         }
                       }
                       if (node.type === "text") {
-                        if (node.value === "return" && parent.children.length === 1) {
+                        if (node.value === "name[i] > 'a'") {
                           parent.properties.className.push("demo123");
                           // console.log("node123", node.value);
                           // console.log("node111.properties.className", parent);

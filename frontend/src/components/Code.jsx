@@ -11,7 +11,6 @@ const Code = ({ code, lineNum, boxes, branches }) => {
         <div className="col" style={{ padding: "10px" }}>
           {lines.map((line, index) => (
             <Line
-              id={`line${index + 1}`}
               key={index}
               line={line}
               index={index}

@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Code from "./components/Code";
 import Footer from "./components/Footer";
 import QuestionBanner from "./components/QuestionBanner";
+import Stdout from "./components/Stdout";
+import HistoryTable from "./components/HistoryTable";
 
 const App = () => {
   const code =
@@ -10,6 +12,70 @@ const App = () => {
 const line = 9;
 
 const branches = [10, 12]
+
+// const dataHistory = {name: [
+//                         undefined,
+//                         undefined,
+//                         ['G', 'r', 'e', 'g', '\0'],
+//                         null,
+//                         null,
+//                         null,
+//                         null,
+//                         null,
+//                         null,
+//                         ['G', 'R', 'e', 'g', '\0'],
+//                         null,
+//                         null,
+//                         null,
+//                         ['G', 'R', 'E', 'g', '\0'],
+//                         null,
+//                         null,
+//                         null,
+//                         ['G', 'R', 'E', 'G', '\0'],
+//                         null,
+//                         null,
+//                         null,
+//                         null
+//                       ],
+//                       i: [
+//                         undefined,
+//                         undefined,
+//                         undefined,
+//                         0,
+//                         null,
+//                         null,
+//                         1,
+//                         null,
+//                         null,
+//                         null,
+//                         2,
+//                         null,
+//                         null,
+//                         null,
+//                         3,
+//                         null,
+//                         null,
+//                         null,
+//                         4,
+//                         null,
+//                         null,
+//                         null
+//                       ]};
+
+const dataHistory = {name: [
+                                {step: 2, value: ['G', 'r', 'e', 'g', '\0']},
+                                {step: 9, value: ['G', 'R', 'e', 'g', '\0']},
+                                {step: 13, value: ['G', 'R', 'E', 'g', '\0']},
+                                {step: 17, value: ['G', 'R', 'E', 'G', '\0']}
+                              ],
+                          i: [
+                            {step: 3, value: 0},
+                            {step: 6, value: 1},
+                            {step: 10, value: 2},
+                            {step: 14, value: 3},
+                            {step: 18, value: 4}
+                          ]
+                        };
 
 const boxes = [
                 {color: "green", startCol: 13, endcol: 27},
@@ -25,45 +91,10 @@ const boxes = [
         <div className="row">
           <div className="col s6">
             <Code code={code} lineNum={line} branches={branches} boxes={boxes}/>
+            <Stdout stdout={"The name is GREG"}/>
           </div>
           <div className="col s6">
-            <table
-              className="centered"
-              style={{ width: "100%", tableLayout: "fixed" }}
-            >
-              <thead>
-                <tr>
-                  <th>var_a</th>
-                  <th>var_b</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>12</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td></td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td className="center-align">a</td>
-                  <td>
-                    <div className="input-field inline col s12">
-                      <input
-                        id="input_var_a"
-                        type="text"
-                        className="validate"
-                        style={{ width: "100%" }}
-                      />
-                      <label htmlFor="input_var_a">3</label>
-                    </div>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
+            <HistoryTable history={dataHistory} stepNum={21}/>
           </div>
         </div>
       </div>
