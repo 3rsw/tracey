@@ -34,9 +34,9 @@ const HistoryTable = ({ history, stepNum }) => {
     // Flatten dataHistory into a single array
     let flatData = [];
     let fields = [];
-    for (let key in dataHistory) {
+    for (let key in history) {
         fields.push(key);
-        dataHistory[key].forEach(item => {
+        history[key].forEach(item => {
             flatData.push({ step: item.step, [key]: item.value });
         });
     }
@@ -80,36 +80,38 @@ const HistoryTable = ({ history, stepNum }) => {
 
     console.log(data);
 
-
-    return (
-        <table className="centered" style={{ width: "100%", tableLayout: "fixed" }}>
-            <thead>
-                <tr>
-                    {[...fields].map(field => <th key={field}>{field}</th>)}
-                </tr>
-            </thead>
-            <tbody>
-                {data.slice(0, -1).map((item, index) => (
-                    <tr key={index}>
+    if (data.length !== 0) {
+        return (
+            <table className="centered" style={{ width: "100%", tableLayout: "fixed" }}>
+                <thead>
+                    <tr>
+                        {[...fields].map(field => <th key={field}>{field}</th>)}
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.slice(0, -1).map((item, index) => (
+                        <tr key={index}>
+                            {[...fields].map(field =>
+                                <td key={field}>
+                                    {item[field] === undefined ? '<UNINITIALIZED>' : Array.isArray(item[field]) ? item[field].join('') : item[field]}
+                                </td>
+                            )}
+                        </tr>
+                    ))}
+                </tbody>
+                <tfoot>
+                    <tr>
                         {[...fields].map(field =>
-                            <td key={field}>
-                                {item[field] === undefined ? '<UNINITIALIZED>' : Array.isArray(item[field]) ? item[field].join('') : item[field]}
+                            <td key={field} className={`center-align ${data[data.length - 1][field] !== null ? 'changedThisStep' : 'notChangedThisStep'}`}>
+                                {currentData[field] === undefined ? '<UNINITIALIZED>' : Array.isArray(currentData[field]) ? currentData[field].join('') : currentData[field]}
                             </td>
                         )}
                     </tr>
-                ))}
-            </tbody>
-            <tfoot>
-                <tr>
-                    {[...fields].map(field =>
-                        <td key={field} className={`center-align ${data[data.length - 1][field] !== null ? 'changedThisStep' : 'notChangedThisStep'}`}>
-                            {currentData[field] === undefined ? '<UNINITIALIZED>' : Array.isArray(currentData[field]) ? currentData[field].join('') : currentData[field]}
-                        </td>
-                    )}
-                </tr>
-            </tfoot>
-        </table>
-    );
+                </tfoot>
+            </table>
+        );
+    }
+    return null;
 }
 
 export default HistoryTable;

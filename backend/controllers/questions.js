@@ -11,8 +11,8 @@ questionsRouter.get('/', (request, response) => {
 
 // GET the information about a particular question
 questionsRouter.get('/:id', (request, response, next) => {
-  Question.find({'_id': request.params.id}, 
-                {'name': 1, 'tags': 1, 'tags': 1, 'difficulty': 1, 'code': 1})
+  Question.findOne({'_id': request.params.id},
+                   {'name': 1, 'tags': 1, 'difficulty': 1, 'code': 1})
     .then(qn => {
       if (qn) {
         response.json(qn)
@@ -74,7 +74,8 @@ async function getFlow(qnId, line) {
     'flow': {'$elemMatch': {'line': line}}})
     .select('flow.$ -_id')
     .lean() 
-  return flow;
+
+  return (flow && flow.flow.length > 0) ? flow.flow[0] : {};
 }
 
 module.exports = questionsRouter

@@ -34,14 +34,11 @@ const Line = ({ line, index, selected, boxes }) => {
                       if (node.properties?.className?.includes("code-line")) {
                         if (index === 0 && node.properties?.className) {
                           node.properties.className.push("demo01");
-                          console.log("~~~", index, node.properties?.className);
                         }
                       }
                       if (node.type === "text") {
                         if (node.value === "name[i] > 'a'") {
                           parent.properties.className.push("demo123");
-                          // console.log("node123", node.value);
-                          // console.log("node111.properties.className", parent);
                         }
                       }
                     }

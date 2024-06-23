@@ -2,7 +2,7 @@ import Arrows from "./Arrows";
 import Line from "./Line";
 import Xarrow from "react-xarrows";
 
-const Code = ({ code, lineNum, boxes, branches }) => {
+const Code = ({ code, lineNum, boxes, branches, fetchNextStep, fetchPrevStep }) => {
   const lines = code.split("\n");
 
   return (
@@ -27,11 +27,15 @@ const Code = ({ code, lineNum, boxes, branches }) => {
             alignItems: "flex-end",
           }}
         >
-          <i className="material-icons">arrow_upward</i>
-          <i className="material-icons">arrow_downward</i>
+          <button onClick={fetchPrevStep}>
+            <i className="material-icons">arrow_upward</i>
+          </button>
+          <button onClick={fetchNextStep}>
+            <i className="material-icons">arrow_downward</i>
+          </button>
         </div>
       </div>
-      <Arrows branches={branches} lineNum={lineNum}/>
+      <Arrows branches={branches} lineNum={lineNum} />
     </div>
   );
 };

@@ -2,7 +2,32 @@
     "name": "if else",
     "tags": ["if", "else", "and"],
     "difficulty": 1,
-    "flow": [],
+    "flow": [
+        {
+            "line": 9,
+            "branch": [
+                10,
+                12
+            ],
+            "conditions": [
+                {
+                    "start": 10,
+                    "end": 15,
+                    "contents": "a > 0"
+                },
+                {
+                    "start": 21,
+                    "end": 26,
+                    "contents": "a > b"
+                },
+                {
+                    "start": 9,
+                    "end": 27,
+                    "contents": "(a > 0) && (a > b)"
+                }
+            ]
+        }
+    ],
     "vars": [
         {
             "function": "main",
@@ -13,7 +38,7 @@
             "params": []
         }
     ],
-    "code": "\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void) {\n    int a = 5;\n    int b = 6;\n    a = b - a;\n    if (a > 0 && a > b) {\n        b = 2 * a;\n    } else {\n        a = 2 * b;\n    }\n    printf(\"a: %d b: %d\\n\", a, b);\n    return 0;\n}",
+    "code": "\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void) {\n    int a = 5;\n    int b = 6;\n    a = b - a;\n    if ((a > 0) && (a > b)) {\n        b = 2 * a;\n    } else {\n        a = 2 * b;\n    }\n    printf(\"a: %d b: %d\\n\", a, b);\n    return 0;\n}",
     "trace": [
         {
             "event": "step_line",

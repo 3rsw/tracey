@@ -4,94 +4,125 @@ import Footer from "./components/Footer";
 import QuestionBanner from "./components/QuestionBanner";
 import Stdout from "./components/Stdout";
 import HistoryTable from "./components/HistoryTable";
+import qnService from "./services/qn";
 
 const App = () => {
-  const code =
-  "\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void) {\n    char name[5] = {'G', 'r', 'e', 'g', '\\0'};\n    int i = 0;\n    while (name[i] != '\\0') {\n        if ((name[i] > 'a') && (name[i] < 'z')) {\n            name[i] = name[i] - 'a' + 'A';\n        }\n        i++;\n    }\n    printf(\"The name is %s\", name);\n    return 0;\n}";
 
-const line = 9;
+  console.log('Rendering App...');  // Debug line
 
-const branches = [10, 12]
+  const [qn, setQn] = useState({name: "Question",
+                                difficulty: "Difficulty",
+                                tags: ["Tag1", "Tag2"],
+                                code: "\nCode\nGoes\nHere"
+  });
 
-// const dataHistory = {name: [
-//                         undefined,
-//                         undefined,
-//                         ['G', 'r', 'e', 'g', '\0'],
-//                         null,
-//                         null,
-//                         null,
-//                         null,
-//                         null,
-//                         null,
-//                         ['G', 'R', 'e', 'g', '\0'],
-//                         null,
-//                         null,
-//                         null,
-//                         ['G', 'R', 'E', 'g', '\0'],
-//                         null,
-//                         null,
-//                         null,
-//                         ['G', 'R', 'E', 'G', '\0'],
-//                         null,
-//                         null,
-//                         null,
-//                         null
-//                       ],
-//                       i: [
-//                         undefined,
-//                         undefined,
-//                         undefined,
-//                         0,
-//                         null,
-//                         null,
-//                         1,
-//                         null,
-//                         null,
-//                         null,
-//                         2,
-//                         null,
-//                         null,
-//                         null,
-//                         3,
-//                         null,
-//                         null,
-//                         null,
-//                         4,
-//                         null,
-//                         null,
-//                         null
-//                       ]};
+  const [currStepNum, setCurrStepNum] = useState(0);
 
-const dataHistory = {name: [
-                                {step: 2, value: ['G', 'r', 'e', 'g', '\0']},
-                                {step: 9, value: ['G', 'R', 'e', 'g', '\0']},
-                                {step: 13, value: ['G', 'R', 'E', 'g', '\0']},
-                                {step: 17, value: ['G', 'R', 'E', 'G', '\0']}
-                              ],
-                          i: [
-                            {step: 3, value: 0},
-                            {step: 6, value: 1},
-                            {step: 10, value: 2},
-                            {step: 14, value: 3},
-                            {step: 18, value: 4}
-                          ]
-                        };
+  const [dataHistory, setDataHistory] = useState({});
+
+  const [qnId, setQnId] = useState('665ac8f0f60cce18caea7674');
+
+  const [lineNum, setLineNum] = useState(1);
+
+  const [branches, setBranches] = useState(null);
+
+  const [stdout, setStdout] = useState("");
+
+  useEffect(() => {
+    // Fetch data and update state
+    qnService.getQn(qnId).then(qn => {
+      setQn(qn)
+  });
+  }, []);  // Empty dependency array
+
+
+const fetchNextStep = async () => {
+  // Get next step (for flow etc)
+  qnService.getStep(qnId, currStepNum + 1).then(stepData => {
+    setLineNum(stepData.line);
+    if ('branch' in stepData) {
+      setBranches(stepData.branch);
+    }
+    else {
+      setBranches(null);
+    }
+  });
+
+  // Get step after that (for HistoryTable)
+  qnService.getStep(qnId, currStepNum + 2).then(stepData => {
+    setStdout(stepData.stdout);
+    const decLines = stepData.vars.find(func => func.function === "main").decs??{};
+    let tempDataHistory = {...dataHistory};
+    for (let localVar in stepData.stack_to_render[0].encoded_locals){
+      if (decLines[localVar] < stepData.line) { // TODO: should this be <= the previousStepData.line?
+        if (localVar in tempDataHistory){ // Check if the variable is already in dataHistory
+            if (stepData.stack_to_render[0].encoded_locals[localVar][0] == "C_ARRAY") {
+              console.log("C_ARRAY"); //TODO: handle arrays
+            } else {
+              if (tempDataHistory[localVar].length > 0 && tempDataHistory[localVar][tempDataHistory[localVar].length - 1].value !== stepData.stack_to_render[0].encoded_locals[localVar][3]){ // if the entry isn't the same as the last variable, add a new entry to that variable
+                tempDataHistory[localVar].push({step: currStepNum + 1, value: stepData.stack_to_render[0].encoded_locals[localVar][3]}); //TODO: currStepNum + 1 or + 2?
+              }
+            }
+          } else { // If it isn't, add a new entry to dataHistory
+            if (stepData.stack_to_render[0].encoded_locals[localVar][0] == "C_ARRAY") {
+              console.log("C_ARRAY"); //TODO: handle arrays
+            } else {
+              tempDataHistory[localVar] = [{step: currStepNum + 1, value: stepData.stack_to_render[0].encoded_locals[localVar][3]}]; //TODO: currStepNum + 1 or + 2?
+            }
+          }
+      }
+    }
+    setDataHistory(tempDataHistory);
+  });
+
+  setCurrStepNum(currStepNum + 1);
+};
+
+const fetchPrevStep = async () => {
+  if (currStepNum != 0) {
+    // Get previous step (for flow etc)
+    qnService.getStep(qnId, currStepNum - 1).then(stepData => {
+      setLineNum(stepData.line);
+      setStdout(stepData.stdout);
+      if ('branch' in stepData) {
+        setBranches(stepData.branch);
+      }
+      else {
+        setBranches(null);
+      }
+    });
+
+    //Get current? step (for stdout)
+    qnService.getStep(qnId, currStepNum).then(stepData => {
+      setStdout(stepData.stdout);
+    });
+
+    // Remove any variables that were added in the "current" step
+    let tempDataHistory = {...dataHistory};
+    for (let localVar in tempDataHistory){
+      if (tempDataHistory[localVar][tempDataHistory[localVar].length - 1].step === currStepNum){
+        tempDataHistory[localVar].pop();
+      }
+    }
+    setDataHistory(tempDataHistory);
+    setCurrStepNum(currStepNum - 1);
+  }
+};
 
 const boxes = [
                 {color: "green", startCol: 13, endcol: 27},
                 {color: "red", startCol: 32, endcol: 46},
                 {color: "red", startCol: 13, endcol: 47}
               ]
-
   return (
     <div className="main-content">
       <h1>Tracey</h1>
       <div className="container">
-        <QuestionBanner questionName={"Question Name"} difficulty={4} tags={["arrays", "linked-lists"]}/>
+        <QuestionBanner questionName={qn.name} difficulty={qn.difficulty} tags={qn.tags}/>
         <div className="row">
           <div className="col s6">
-            <Code code={code} lineNum={line} branches={branches} boxes={boxes}/>
-            <Stdout stdout={"The name is GREG"}/>
+            <Code code={qn.code} lineNum={lineNum} branches={branches} boxes={boxes} fetchNextStep={fetchNextStep} fetchPrevStep={fetchPrevStep}/>
+            <Stdout stdout={stdout}/>
           </div>
           <div className="col s6">
             <HistoryTable history={dataHistory} stepNum={21}/>
