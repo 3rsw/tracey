@@ -1,6 +1,15 @@
-
+import React, { useEffect, useRef } from 'react';
+import Arr from './Arr';
 
 const HistoryTable = ({ history, stepNum }) => {
+
+    const scrollRef = useRef();
+
+    useEffect(() => {
+        if (scrollRef.current) {
+          scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+        }
+      },  [history]);
 
     const dataHistory = {
         name: [
@@ -82,33 +91,35 @@ const HistoryTable = ({ history, stepNum }) => {
 
     if (data.length !== 0) {
         return (
-            <table className="centered" style={{ width: "100%", tableLayout: "fixed" }}>
-                <thead>
-                    <tr>
-                        {[...fields].map(field => <th key={field}>{field}</th>)}
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.slice(0, -1).map((item, index) => (
-                        <tr key={index}>
+            <div ref={scrollRef} className="scrollable-div">
+                <table className="centered" style={{ width: "100%", tableLayout: "fixed" }}>
+                <thead style={{ position: "sticky", top: "0", backgroundColor: "white" }}>
+                        <tr>
+                            {[...fields].map(field => <th key={field}>{field}</th>)}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.slice(0, -1).map((item, index) => ( // Render all but last
+                            <tr key={index}>
+                                {[...fields].map(field =>
+                                    <td key={field}>
+                                        {item[field] === undefined ? '<UNINITIALIZED>' : Array.isArray(item[field]) ? item[field].join('') : item[field]}
+                                    </td>
+                                )}
+                            </tr>
+                        ))}
+                    </tbody>
+                    <tfoot>
+                        <tr>
                             {[...fields].map(field =>
-                                <td key={field}>
-                                    {item[field] === undefined ? '<UNINITIALIZED>' : Array.isArray(item[field]) ? item[field].join('') : item[field]}
+                                <td key={field} className={`center-align ${data[data.length - 1][field] !== null ? (data[data.length - 1].step === stepNum ? 'changedThisStep': 'changedLast') : 'notChangedLast'}`}>
+                                    {currentData[field] === undefined ? '<UNINITIALIZED>' : Array.isArray(currentData[field]) ? currentData[field].join('') : currentData[field]}
                                 </td>
                             )}
                         </tr>
-                    ))}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        {[...fields].map(field =>
-                            <td key={field} className={`center-align ${data[data.length - 1][field] !== null ? 'changedThisStep' : 'notChangedThisStep'}`}>
-                                {currentData[field] === undefined ? '<UNINITIALIZED>' : Array.isArray(currentData[field]) ? currentData[field].join('') : currentData[field]}
-                            </td>
-                        )}
-                    </tr>
-                </tfoot>
-            </table>
+                    </tfoot>
+                </table>
+            </div>
         );
     }
     return null;

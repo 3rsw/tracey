@@ -8,7 +8,7 @@ import qnService from "./services/qn";
 
 const App = () => {
 
-  console.log('Rendering App...');  // Debug line
+  console.log('Rendering App...');
 
   const [qn, setQn] = useState({name: "Question",
                                 difficulty: "Difficulty",
@@ -54,20 +54,41 @@ const fetchNextStep = async () => {
     const decLines = stepData.vars.find(func => func.function === "main").decs??{};
     let tempDataHistory = {...dataHistory};
     for (let localVar in stepData.stack_to_render[0].encoded_locals){
-      if (decLines[localVar] < stepData.line) { // TODO: should this be <= the previousStepData.line?
+      if (decLines[localVar] < stepData.line) {
         if (localVar in tempDataHistory){ // Check if the variable is already in dataHistory
+          if (tempDataHistory[localVar].length > 0) {
+            let varLastEntry = tempDataHistory[localVar][tempDataHistory[localVar].length - 1].value;
             if (stepData.stack_to_render[0].encoded_locals[localVar][0] == "C_ARRAY") {
-              console.log("C_ARRAY"); //TODO: handle arrays
+              console.log("C_ARRAY");
+              let arr = [];
+              stepData.stack_to_render[0].encoded_locals[localVar].forEach((item, index) => {
+                if (index >= 3) {
+                  arr.push(item[3]);
+                }
+              });
+              // Check if arr is the same as the previous entry
+              if ((arr.length === varLastEntry.length && arr.every((value, index) => value === varLastEntry[index]) != true)){
+                tempDataHistory[localVar].push({step: currStepNum + 1, value: arr});
+              }
+
             } else {
-              if (tempDataHistory[localVar].length > 0 && tempDataHistory[localVar][tempDataHistory[localVar].length - 1].value !== stepData.stack_to_render[0].encoded_locals[localVar][3]){ // if the entry isn't the same as the last variable, add a new entry to that variable
-                tempDataHistory[localVar].push({step: currStepNum + 1, value: stepData.stack_to_render[0].encoded_locals[localVar][3]}); //TODO: currStepNum + 1 or + 2?
+              if (varLastEntry !== stepData.stack_to_render[0].encoded_locals[localVar][3]){ // if the entry isn't the same as the last variable, add a new entry to that variable
+                tempDataHistory[localVar].push({step: currStepNum + 1, value: stepData.stack_to_render[0].encoded_locals[localVar][3]});
               }
             }
+          }
           } else { // If it isn't, add a new entry to dataHistory
             if (stepData.stack_to_render[0].encoded_locals[localVar][0] == "C_ARRAY") {
-              console.log("C_ARRAY"); //TODO: handle arrays
+              console.log("C_ARRAY");
+              let arr = [];
+              stepData.stack_to_render[0].encoded_locals[localVar].forEach((item, index) => {
+                if (index >= 3) {
+                  arr.push(item[3]);
+                }
+              });
+              tempDataHistory[localVar] = [{step: currStepNum + 1, value: arr}];
             } else {
-              tempDataHistory[localVar] = [{step: currStepNum + 1, value: stepData.stack_to_render[0].encoded_locals[localVar][3]}]; //TODO: currStepNum + 1 or + 2?
+              tempDataHistory[localVar] = [{step: currStepNum + 1, value: stepData.stack_to_render[0].encoded_locals[localVar][3]}];
             }
           }
       }
@@ -103,7 +124,11 @@ const fetchPrevStep = async () => {
       if (tempDataHistory[localVar][tempDataHistory[localVar].length - 1].step === currStepNum){
         tempDataHistory[localVar].pop();
       }
+      if (tempDataHistory[localVar].length === 0){
+        delete tempDataHistory[localVar];
+      }
     }
+
     setDataHistory(tempDataHistory);
     setCurrStepNum(currStepNum - 1);
   }
@@ -122,11 +147,13 @@ const boxes = [
         <div className="row">
           <div className="col s6">
             <Code code={qn.code} lineNum={lineNum} branches={branches} boxes={boxes} fetchNextStep={fetchNextStep} fetchPrevStep={fetchPrevStep}/>
-            <Stdout stdout={stdout}/>
           </div>
           <div className="col s6">
-            <HistoryTable history={dataHistory} stepNum={21}/>
+            <HistoryTable history={dataHistory} stepNum={currStepNum}/>
           </div>
+        </div>
+        <div className="row">
+          <Stdout stdout={stdout}/>
         </div>
       </div>
       <Footer />

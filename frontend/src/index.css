@@ -54,7 +54,17 @@ tfoot tr {
   color: darkorange;
 }
 
-.notChangedThisStep {
+.changedLast {
+  font-weight: normal;
+  color: black;
+}
+
+.notChangedLast {
   font-weight: lighter;
   color: black;
+}
+
+.scrollable-div {
+  overflow-y: auto;
+  max-height: 50vh;
 }
