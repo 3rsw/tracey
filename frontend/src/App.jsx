@@ -5,6 +5,7 @@ import QuestionBanner from "./components/QuestionBanner";
 import Stdout from "./components/Stdout";
 import HistoryTable from "./components/HistoryTable";
 import qnService from "./services/qn";
+import NavBar from "./components/NavBar";
 
 const App = () => {
 
@@ -141,7 +142,7 @@ const boxes = [
               ]
   return (
     <div className="main-content">
-      <h1>Tracey</h1>
+      <NavBar/>
       <div className="container">
         <QuestionBanner questionName={qn.name} difficulty={qn.difficulty} tags={qn.tags}/>
         <div className="row">

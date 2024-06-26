@@ -6,7 +6,7 @@ const Code = ({ code, lineNum, boxes, branches, fetchNextStep, fetchPrevStep }) 
   const lines = code.split("\n");
 
   return (
-    <div className="card orange lighten-4 text-white" style={{ position: 'relative' }}>
+    <div className="card orange lighten-4 text-white code" style={{ position: 'relative' }}>
       <div className="row valign-wrapper" style={{ position: 'relative' }}>
         <div className="col" style={{ padding: "10px" }}>
           {lines.map((line, index) => (

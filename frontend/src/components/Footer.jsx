@@ -4,11 +4,11 @@ const Footer = () => {
       <div className="container">
         <div className="row valign-wrapper">
           <div className="col s6 right">
-            <p className="grey-text text-lighten-4 right">Created by Elizabeth Willer for UNSW Thesis B (T2 2024)</p>
+            <p className="grey-text text-lighten-4 right foot-txt">Created by Elizabeth Willer for UNSW Thesis B (T2 2024)</p>
           </div>
           <div className="col s6 center">
             <a href="https://github.com/3rsw/thesis_app">
-            <i className="material-icons grey-text text-lighten-4">code</i>
+            <i className="material-icons grey-text text-lighten-4 foot-txt">code</i>
            </a>
           </div>
         </div>
