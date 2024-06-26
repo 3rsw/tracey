@@ -95,9 +95,9 @@ const fetchNextStep = async () => {
       }
     }
     setDataHistory(tempDataHistory);
+    setCurrStepNum(currStepNum + 1);
   });
 
-  setCurrStepNum(currStepNum + 1);
 };
 
 const fetchPrevStep = async () => {
