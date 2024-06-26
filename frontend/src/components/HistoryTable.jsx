@@ -103,7 +103,7 @@ const HistoryTable = ({ history, stepNum }) => {
                             <tr key={index}>
                                 {[...fields].map(field =>
                                     <td key={field}>
-                                        {item[field] === undefined ? '<UNINITIALIZED>' : Array.isArray(item[field]) ? item[field].join('') : item[field]}
+                                        {item[field] === undefined ? '<UNINITIALIZED>' : Array.isArray(item[field]) ? <Arr arr={item[field]}/> : item[field]}
                                     </td>
                                 )}
                             </tr>
@@ -112,7 +112,7 @@ const HistoryTable = ({ history, stepNum }) => {
                     <tfoot>
                         <tr>
                             {[...fields].map(field =>
-                                <td key={field} className={`center-align ${data[data.length - 1][field] !== null ? (data[data.length - 1].step === stepNum ? 'changedThisStep': 'changedLast') : 'notChangedLast'}`}>
+                                <td key={field} className={`center-align ${data[data.length - 1][field] !== null ? (data[data.length - 1].step === stepNum ? 'changed-this-step': 'changed-last') : 'not-changed-last'}`}>
                                     {currentData[field] === undefined ? '<UNINITIALIZED>' : Array.isArray(currentData[field]) ? currentData[field].join('') : currentData[field]}
                                 </td>
                             )}

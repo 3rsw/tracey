@@ -49,17 +49,17 @@ tfoot tr {
   border: 1px solid red;
 }
 
-.changedThisStep {
+.changed-this-step {
   font-weight: bold;
   color: darkorange;
 }
 
-.changedLast {
+.changed-last {
   font-weight: normal;
   color: black;
 }
 
-.notChangedLast {
+.not-changed-last {
   font-weight: lighter;
   color: black;
 }
@@ -67,4 +67,24 @@ tfoot tr {
 .scrollable-div {
   overflow-y: auto;
   max-height: 50vh;
+}
+
+.arr-table {
+  width: 100%;
+  table-layout: fixed;
+  padding: 0px;
+  margin: 0px;
+}
+
+.arr-head {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  font-weight: lighter;
+}
+
+.arr-data {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
 }

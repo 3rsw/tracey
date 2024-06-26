@@ -2,12 +2,12 @@
 
 const Arr = ({ arr }) => {
     return (
-        <table>
+        <table className="arr-table">
             <thead>
                 <tr>
                     {arr.map((item, index) => {
                         return (
-                            <th key={index}>
+                            <th key={index} className="arr-head">
                                 {index}
                             </th>
                         );
@@ -18,7 +18,7 @@ const Arr = ({ arr }) => {
                 <tr>
                     {arr.map((item, index) => {
                         return (
-                            <td key={index}>
+                            <td key={index} className="arr-data">
                                 {item}
                             </td>
                         );
