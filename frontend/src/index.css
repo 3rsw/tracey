@@ -108,3 +108,14 @@ tfoot tr {
   margin: 0;
   padding: 0;
 }
+
+.qn-table tr{
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.eighty-width{
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 5vh;
+}

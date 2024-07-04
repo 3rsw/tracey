@@ -22,6 +22,20 @@ const getStep = (id, step) => {
   return request.then(response => response.data)
 }
 
+// Get a list of all topics
+const getTopics = async () => {
+  const qns = await getListQns();
+
+  const topics = qns.flatMap(qn => qn.tags || []);
+  const uniqueTopics = [...new Set(topics)];
+
+  return uniqueTopics;
+}
+
+const getTopicQns = (topic) => {
+  // TODO:
+}
+
 export default { 
-  getListQns, getQn, getStep 
+  getListQns, getQn, getStep, getTopics, getTopicQns
 }
