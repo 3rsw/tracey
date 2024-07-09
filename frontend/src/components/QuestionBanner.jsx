@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const QuestionBanner = ({ questionName, difficulty, tags }) => {
   return (
     <div className="card orange lighten-3 row">
@@ -10,13 +12,7 @@ const QuestionBanner = ({ questionName, difficulty, tags }) => {
           Tags:
           {tags.map((tag, index) => (
             <span key={index}>
-              <a
-                href={`https://www.google.com/search?q=${tag}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {tag}
-              </a>
+                <Link to={`/topic/${tag}`}>{tag}</Link>
               {index < tags.length - 1 ? ", " : ""}
             </span>
           ))}
