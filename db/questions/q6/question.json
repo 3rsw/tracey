@@ -14,12 +14,13 @@
             "function": "zero",
             "decs": {},
             "params": [
-                "a_val"
+                "a_val",
+                "b_ptr"
             ]
         }
     ],
     "flow": [],
-    "code": "\n#include <stdio.h>\n#include <stdlib.h>\n\nint zero(int a_val, int *b_ptr) { \n    a_val = 0;\n    *b_ptr = 0;\n}\n\nint main(void) {\n    int a = 3;\n    int b = 4;\n    zero(a, &b);\n    printf(\"a is %d and b is %d\", a, b);\n    return 0;\n}",
+    "code": "\n#include <stdio.h>\n#include <stdlib.h>\n\nvoid zero(int a_val, int *b_ptr) {\n    a_val = 0;\n    *b_ptr = 0;\n}\n\nint main(void) {\n    int a = 3;\n    int b = 4;\n    zero(a, &b);\n    printf(\"a is %d and b is %d\", a, b);\n    return 0;\n}",
     "trace": [
         {
             "event": "step_line",
@@ -759,6 +760,5 @@
             ],
             "stdout": "a is 3 and b is 0"
         }
-    ],
-    "warnings": "Compiler warnings:\ngcc-9 -std=gnu17 -Wall -Wno-unused-variable -Wno-unused-but-set-variable -Wno-main\n\n In function 'zero':\n8:1: warning: control reaches end of non-void function [-Wreturn-type]\n    8 | }\n      | ^"
+    ]
 }

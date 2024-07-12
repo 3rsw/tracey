@@ -119,3 +119,18 @@ tfoot tr {
   margin: 0 auto;
   margin-top: 5vh;
 }
+
+.top-of-stack {
+  border: 2px solid orange;
+}
+
+.not-top-of-stack {
+  border: 2px solid black;
+}
+
+.not-top-of-stack tfoot tr {
+  border: 2px solid black;
+}
+.top-of-stack tfoot tr {
+  border: 2px solid orange;
+}

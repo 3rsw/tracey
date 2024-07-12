@@ -11,7 +11,8 @@
             "function": "zero",
             "decs": {},
             "params": [
-                "a_val"
+                "a_val",
+                "b_ptr"
             ]
         }
     ]
