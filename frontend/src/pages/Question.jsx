@@ -30,7 +30,7 @@ const Question = () => {
 
   const [stdout, setStdout] = useState("");
 
-  // This is going to be a stack of the stackFrames of the returned functions
+  // Stack of the stackFrames of the returned functions
   // so that the back buttons work if there are functions involved
   const [returnedFunctions, setReturnedFunctions] = useState([]);
 
@@ -59,56 +59,60 @@ const fetchNextStep = async () => {
     setStdout(stepData.stdout);
     let tempDataHistory = [ ...dataHistory ];
     //Check stack frame matches
+    let topStackFramePremature = false;
     if (stepData.stack_to_render.length < dataHistory.length) { // We have returned from a function
       console.log("returnedFunctions", returnedFunctions);
       setReturnedFunctions([...returnedFunctions??[], tempDataHistory.pop()]);
     } else if (stepData.stack_to_render.length > dataHistory.length) { // We have entered a new function
       tempDataHistory.push({func_name: stepData.stack_to_render[stepData.stack_to_render.length - 1].func_name, vars: {}})
+      // We actually want to skp the variable changing in the new top stack frame because we don't want it to show up yet.
+      if (stepData.stack_to_render.length != 1) { // Don't do for main
+        topStackFramePremature = true;
+      }
     }
     // Go through each stack frame and check if the variables have changed
     // Need to go through all stack frames because pointers
     stepData.stack_to_render.map((stackFrame, index) => {
-      const decLines = stepData.vars.find(func => func.function === stackFrame.func_name).decs ?? {};
-      const params = stepData.vars.find(func => func.function === stackFrame.func_name).params ?? [];
-      console.log("params", params);
-      console.log("stackFrame", stackFrame);
-      for (let localVar in stackFrame.encoded_locals) {
-        console.log("localVar", localVar);
-        if (decLines[localVar] < stepData.line || params.includes(localVar) || localVar in tempDataHistory[index].vars) { // Account for the variables in other functions that may be declared lower down
-          if (localVar in tempDataHistory[index].vars) { // Check if the variable is already in dataHistory
-            if (tempDataHistory[index].vars[localVar].length > 0) {
-              let varLastEntry = tempDataHistory[index].vars[localVar][tempDataHistory[index].vars[localVar].length - 1].value;
+      console.log(index);
+      if (!topStackFramePremature || index != stepData.stack_to_render.length - 1) {
+        const decLines = stepData.vars.find(func => func.function === stackFrame.func_name).decs ?? {};
+        const params = stepData.vars.find(func => func.function === stackFrame.func_name).params ?? [];
+        for (let localVar in stackFrame.encoded_locals) {
+          let stackFrameVars = tempDataHistory[index].vars;
+          if (decLines[localVar] < stepData.line || params.includes(localVar) || localVar in stackFrameVars) { // Account for the variables in other functions that may be declared lower down
+            if (localVar in stackFrameVars) { // Check if the variable is already in dataHistory
+              if (stackFrameVars[localVar].length > 0) {
+                let varLastEntry = stackFrameVars[localVar][stackFrameVars[localVar].length - 1].value;
+                if (stackFrame.encoded_locals[localVar][0] == "C_ARRAY") {
+                  let arr = [];
+                  stackFrame.encoded_locals[localVar].forEach((item, index) => {
+                    if (index >= 3) {
+                      arr.push(item[3]);
+                    }
+                  });
+                  // Check if arr is the same as the previous entry
+                  if ((arr.length === varLastEntry.length && arr.every((value, index) => value === varLastEntry[index]) != true)) {
+                    stackFrameVars[localVar].push({ step: currStepNum + 1, value: arr });
+                  }
+
+                } else {
+                  if (varLastEntry !== stackFrame.encoded_locals[localVar][3]) { // if the entry isn't the same as the last variable, add a new entry to that variable
+                    stackFrameVars[localVar].push({ step: currStepNum + 1, value: stackFrame.encoded_locals[localVar][3] });
+                  }
+                }
+              }
+            } else { // If it isn't, add a new entry to dataHistory
               if (stackFrame.encoded_locals[localVar][0] == "C_ARRAY") {
-                console.log("C_ARRAY");
                 let arr = [];
                 stackFrame.encoded_locals[localVar].forEach((item, index) => {
                   if (index >= 3) {
                     arr.push(item[3]);
                   }
                 });
-                // Check if arr is the same as the previous entry
-                if ((arr.length === varLastEntry.length && arr.every((value, index) => value === varLastEntry[index]) != true)) {
-                  tempDataHistory[index].vars[localVar].push({ step: currStepNum + 1, value: arr });
-                }
-
+                stackFrameVars[localVar] = [{ step: currStepNum + 1, value: arr }];
               } else {
-                if (varLastEntry !== stackFrame.encoded_locals[localVar][3]) { // if the entry isn't the same as the last variable, add a new entry to that variable
-                  tempDataHistory[index].vars[localVar].push({ step: currStepNum + 1, value: stackFrame.encoded_locals[localVar][3] });
-                }
+                stackFrameVars[localVar] = [{ step: currStepNum + 1, value: stackFrame.encoded_locals[localVar][3] }];
               }
-            }
-          } else { // If it isn't, add a new entry to dataHistory
-            if (stackFrame.encoded_locals[localVar][0] == "C_ARRAY") {
-              console.log("C_ARRAY");
-              let arr = [];
-              stackFrame.encoded_locals[localVar].forEach((item, index) => {
-                if (index >= 3) {
-                  arr.push(item[3]);
-                }
-              });
-              tempDataHistory[index].vars[localVar] = [{ step: currStepNum + 1, value: arr }];
-            } else {
-              tempDataHistory[index].vars[localVar] = [{ step: currStepNum + 1, value: stackFrame.encoded_locals[localVar][3] }];
             }
           }
         }
@@ -153,12 +157,12 @@ const fetchNextStep = async () => {
       // Need to go through all stack frames because pointers
       for (let currStackFrame of tempDataHistory) {
         for (let localVar in currStackFrame.vars) {
-          let currStackFrameVars = currStackFrame.vars;
-            if (currStackFrameVars[localVar][currStackFrameVars[localVar].length - 1].step >= currStepNum) {
-              currStackFrameVars[localVar].pop();
+          let stackFrameVars = currStackFrame.vars;
+            if (stackFrameVars[localVar][stackFrameVars[localVar].length - 1].step >= currStepNum) {
+              stackFrameVars[localVar].pop();
             }
-            if (currStackFrameVars[localVar].length === 0) {
-              delete currStackFrameVars[localVar];
+            if (stackFrameVars[localVar].length === 0) {
+              delete stackFrameVars[localVar];
             }
         }
       }

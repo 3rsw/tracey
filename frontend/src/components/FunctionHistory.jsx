@@ -83,10 +83,10 @@ const FunctionHistory = ({ history, stepNum, topOfStack, functionName }) => {
                             ))}
                         </tbody>
                         <tfoot>
-                            <tr>
+                            <tr className="function-history-tfoot-tr">
                                 {[...fields].map(field =>
                                     <td key={field} className={`center-align ${data[data.length - 1][field] !== null ? (data[data.length - 1].step === stepNum ? 'changed-this-step': 'changed-last') : 'not-changed-last'}`}>
-                                        {currentData[field] === undefined ? '' : Array.isArray(currentData[field]) ? currentData[field].join('') : currentData[field]}
+                                        {currentData[field] === undefined ? '' : Array.isArray(currentData[field]) ? <Arr arr={currentData[field]}/> : currentData[field]}
                                     </td>
                                 )}
                             </tr>

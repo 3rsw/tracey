@@ -34,7 +34,7 @@ html, body {
   margin-top: auto;
 }
 
-tfoot tr {
+.function-history-tfoot-tr {
   margin-top:10%;
   border: 2px solid orange;
   border-radius: 10px;
@@ -74,6 +74,12 @@ tfoot tr {
   table-layout: fixed;
   padding: 0px;
   margin: 0px;
+}
+
+.arr-table,
+.arr-table th,
+.arr-table td {
+  border: none;
 }
 
 .arr-head {
@@ -128,9 +134,9 @@ tfoot tr {
   border: 2px solid black;
 }
 
-.not-top-of-stack tfoot tr {
+.not-top-of-stack.function-history-tfoot-tr {
   border: 2px solid black;
 }
-.top-of-stack tfoot tr {
+.top-of-stack tfoot.function-history-tfoot-tr {
   border: 2px solid orange;
 }
