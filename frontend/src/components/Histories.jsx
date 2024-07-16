@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import FunctionHistory from './FunctionHistory';
+import QuizFunctionHistory from './QuizFunctionHistory';
 
-const Histories = ({ histories, stepNum }) => {
+const Histories = ({ histories, stepNum, mode, setDataHistory }) => {
 
     const scrollRef = useRef();
 
@@ -14,14 +15,26 @@ const Histories = ({ histories, stepNum }) => {
     if (histories != undefined && histories.length !== 0) {
         return (
             <div ref={scrollRef} className="scrollable-div">
-                {[...histories].map((history, index) =>
+                { mode == "walkthrough" ? [...histories].map((history, index) =>
                     <FunctionHistory history={history.vars} 
                                      stepNum={stepNum} 
                                      topOfStack={(index) === histories.length -1} 
                                      key={index} 
                                      functionName = {history.func_name}
                     />
-                )}
+                ) : (
+                [...histories].map((history, index) =>
+                    <QuizFunctionHistory
+                                    histories={histories}
+                                    historiesIndex= {index}
+                                    history={history.vars}
+                                    stepNum={stepNum}
+                                    topOfStack={(index) === histories.length -1}
+                                    key={index}
+                                    functionName = {history.func_name}
+                                    setDataHistory={setDataHistory}
+                    />
+                ))}
             </div>
         );
     }

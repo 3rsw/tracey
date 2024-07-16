@@ -2,7 +2,7 @@ import Arrows from "./Arrows";
 import Line from "./Line";
 import Xarrow from "react-xarrows";
 
-const Code = ({ code, lineNum, boxes, branches, fetchNextStep, fetchPrevStep }) => {
+const Code = ({ code, lineNum, boxes, branches, fetchNextStep, fetchPrevStep, allVarsHaveAttempt, mode }) => {
   const lines = code.split("\n");
 
   return (
@@ -27,10 +27,12 @@ const Code = ({ code, lineNum, boxes, branches, fetchNextStep, fetchPrevStep }) 
             alignItems: "flex-end",
           }}
         >
-          <button onClick={fetchPrevStep}>
-            <i className="material-icons">arrow_upward</i>
-          </button>
-          <button onClick={fetchNextStep}>
+          {mode === "walkthrough" ? (
+            <button onClick={fetchPrevStep}>
+              <i className="material-icons">arrow_upward</i>
+            </button>
+          ) : null}
+          <button onClick={fetchNextStep} disabled={allVarsHaveAttempt === false ? true : false}>
             <i className="material-icons">arrow_downward</i>
           </button>
         </div>

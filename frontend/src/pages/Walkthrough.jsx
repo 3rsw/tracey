@@ -8,7 +8,7 @@ import qnService from "../services/qn";
 import NavBar from "../components/NavBar";
 import { useParams } from "react-router-dom";
 
-const Question = () => {
+const Walkthrough = () => {
 
   console.log('Rendering App...');
 
@@ -40,7 +40,6 @@ const Question = () => {
       setQn(qn)
   });
   }, []);
-
 
 const fetchNextStep = async () => {
   // Get next step (for flow etc)
@@ -182,13 +181,13 @@ const boxes = [
     <div className="main-content">
       <NavBar/>
       <div className="container">
-        <QuestionBanner questionName={qn.name} difficulty={qn.difficulty} tags={qn.tags}/>
+        <QuestionBanner questionName={qn.name} difficulty={qn.difficulty} tags={qn.tags} mode={"walkthrough"} qnId={qnId}/>
         <div className="row">
           <div className="col s6">
-            <Code code={qn.code} lineNum={lineNum} branches={branches} boxes={boxes} fetchNextStep={fetchNextStep} fetchPrevStep={fetchPrevStep}/>
+            <Code code={qn.code} lineNum={lineNum} branches={branches} boxes={boxes} fetchNextStep={fetchNextStep} mode={"walkthrough"} fetchPrevStep={fetchPrevStep} allVarsHaveAttempt={true}/>
           </div>
           <div className="col s6">
-            <Histories histories={dataHistory} stepNum={currStepNum}/>
+            <Histories histories={dataHistory} stepNum={currStepNum} mode={"walkthrough"}/>
           </div>
         </div>
         <div className="row">
@@ -200,4 +199,4 @@ const boxes = [
   );
 };
 
-export default Question;
+export default Walkthrough;

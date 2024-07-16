@@ -26,6 +26,8 @@ const QuestionTable = ({ questions }) => {
                         Name
                         <button onClick={sortByName}><i className="material-icons">swap_vert</i></button>
                     </th>
+                    <th></th>
+                    <th></th>
                     <th>
                         Difficulty
                         <button onClick={sortByDifficulty}><i className="material-icons">swap_vert</i></button>
@@ -36,7 +38,9 @@ const QuestionTable = ({ questions }) => {
             <tbody>
                 {questions.map((question, index) => (
                     <tr key={index}>
-                        <td><Link to={`/question/${question._id}`}>{question.name}</Link></td>
+                        <td>{question.name}</td>
+                        <td><Link to={`/question/${question._id}/walkthrough`}>walkthrough</Link></td>
+                        <td><Link to={`/question/${question._id}/quiz`}>quiz</Link></td>
                         <td> {"*".repeat(question.difficulty)}</td>
                         <td>{question.tags.map((tag, index) => (
                             <span key={index}>

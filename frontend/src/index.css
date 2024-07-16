@@ -140,3 +140,24 @@ html, body {
 .top-of-stack tfoot.function-history-tfoot-tr {
   border: 2px solid orange;
 }
+
+
+.btn.selected {
+  background-color: darkorange;
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 5px;
+}
+.btn.unselected {
+  background-color: darkorange;
+  margin: 5px;
+}
+
+button.btn:disabled {
+  background-color: darkorange !important;
+  color: white !important;
+}
+
+.btn:hover {
+  background-color: orange !important;
+}

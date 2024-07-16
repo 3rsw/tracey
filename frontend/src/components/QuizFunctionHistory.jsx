@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Arr from './Arr';
 
-const FunctionHistory = ({ history, stepNum, topOfStack, functionName }) => {
+const QuizFunctionHistory = ({ histories, historiesIndex, history, stepNum, topOfStack, functionName, setDataHistory }) => {
 
     const scrollRef = useRef();
 
@@ -10,6 +10,13 @@ const FunctionHistory = ({ history, stepNum, topOfStack, functionName }) => {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         }
     }, [history]);
+
+    const handleInputChange = (e, varName) => {
+        const attempt = e.target.value;
+        let newHistories = [...histories];
+        newHistories[historiesIndex].vars[varName][newHistories[historiesIndex].vars[varName].length - 1].attempt = attempt;
+        setDataHistory(newHistories);
+      };
 
     // Flatten dataHistory into a single array
     let flatData = [];
@@ -84,10 +91,12 @@ const FunctionHistory = ({ history, stepNum, topOfStack, functionName }) => {
                         </tbody>
                         <tfoot>
                             <tr className="function-history-tfoot-tr">
-                                {[...fields].map(field =>
-                                    <td key={field} className={`center-align ${data[data.length - 1][field] !== null ? (data[data.length - 1].step === stepNum ? 'changed-this-step' : 'changed-last') : 'not-changed-last'}`}>
-                                        {currentData[field] === undefined ? '' : Array.isArray(currentData[field]) ? <Arr arr={currentData[field]} /> : currentData[field]}
-                                    </td>
+                                {[...fields].map(field => {
+                                    return (data[data.length - 1].step === stepNum) ? <td><input type="text" onChange={(e) => handleInputChange(e, field)}/> </td>:
+                                        <td key={field} className={`center-align ${data[data.length - 1][field] !== null ? 'changed-last' : 'not-changed-last'}`}>
+                                            {currentData[field] === undefined ? '' : Array.isArray(currentData[field]) ? <Arr arr={currentData[field]} /> : currentData[field]}
+                                        </td>
+                                }
                                 )}
                             </tr>
                         </tfoot>
@@ -99,4 +108,4 @@ const FunctionHistory = ({ history, stepNum, topOfStack, functionName }) => {
     return null;
 }
 
-export default FunctionHistory;
+export default QuizFunctionHistory;

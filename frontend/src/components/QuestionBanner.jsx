@@ -1,18 +1,35 @@
 import { Link } from 'react-router-dom';
 
-const QuestionBanner = ({ questionName, difficulty, tags }) => {
+const QuestionBanner = ({ questionName, difficulty, tags, mode, qnId }) => {
   return (
     <div className="card orange lighten-3 row">
-      <div className="col s6">
+      <div className="col s4">
         <h4>{questionName}</h4>
       </div>
-      <div className="col s6">
+      <div className="col s4">
+        {mode === "walkthrough" ? (
+          <h4>
+            <button className="btn selected" disabled>walkthrough</button>
+            <Link to={`/question/${qnId}/quiz`}>
+              <button className="btn unselected">quiz</button>
+            </Link>
+          </h4>
+        ) : (
+          <h4>
+            <Link to={`/question/${qnId}/walkthrough`}>
+              <button className="btn unselected">walkthrough</button>
+            </Link>
+            <button className="btn selected" disabled>quiz</button>
+          </h4>
+        )}
+      </div>
+      <div className="col s4">
         <h6>Difficulty: {"*".repeat(difficulty)}</h6>
         <h6>
           Tags:
           {tags.map((tag, index) => (
             <span key={index}>
-                <Link to={`/topic/${tag}`}>{tag}</Link>
+              <Link to={`/topic/${tag}`}>{tag}</Link>
               {index < tags.length - 1 ? ", " : ""}
             </span>
           ))}
