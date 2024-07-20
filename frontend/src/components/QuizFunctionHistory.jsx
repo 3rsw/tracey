@@ -1,9 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import Arr from './Arr';
+import InputArr from './InputArr';
+import AttemptArr from './AttemptArr';
 
 const QuizFunctionHistory = ({ histories, historiesIndex, history, stepNum, topOfStack, functionName, setDataHistory }) => {
 
     const scrollRef = useRef();
+
+    console.log("history:", history);
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -12,11 +16,14 @@ const QuizFunctionHistory = ({ histories, historiesIndex, history, stepNum, topO
     }, [history]);
 
     const handleInputChange = (e, varName) => {
-        const attempt = e.target.value;
+        let attempt = e.target.value;
+        if (attempt === '') {
+            attempt = undefined;
+        }
         let newHistories = [...histories];
         newHistories[historiesIndex].vars[varName][newHistories[historiesIndex].vars[varName].length - 1].attempt = attempt;
         setDataHistory(newHistories);
-      };
+    };
 
     // Flatten dataHistory into a single array
     let flatData = [];
@@ -24,10 +31,11 @@ const QuizFunctionHistory = ({ histories, historiesIndex, history, stepNum, topO
     for (let key in history) {
         fields.push(key);
         history[key].forEach(item => {
-            flatData.push({ step: item.step, [key]: item.value });
+            flatData.push({ step: item.step, [key]: { value: item.value, attempt: item.attempt } });
         });
     }
     flatData.sort((a, b) => a.step - b.step);
+    console.log("flatData:", flatData);
 
     // Initialize the data array with all fields set to undefined
     let data = [];
@@ -65,6 +73,9 @@ const QuizFunctionHistory = ({ histories, historiesIndex, history, stepNum, topO
     // Sort the data array by the 'step' property again after all modifications
     data.sort((a, b) => a.step - b.step);
 
+    console.log("data:", data);
+    console.log("currentData:", currentData);
+
     if (data.length !== 0) {
         return (
             <div ref={scrollRef} className={`${topOfStack ? 'top-of-stack' : 'not-top-of-stack'}`} style={{ display: 'flex', flexDirection: 'column', marginBottom: "5px" }}>
@@ -81,20 +92,33 @@ const QuizFunctionHistory = ({ histories, historiesIndex, history, stepNum, topO
                         <tbody>
                             {data.slice(0, -1).map((item, index) => ( // Render all but last
                                 <tr key={index}>
-                                    {[...fields].map(field =>
-                                        <td key={field}>
-                                            {item[field] === undefined ? '' : Array.isArray(item[field]) ? <Arr arr={item[field]} /> : item[field]}
-                                        </td>
-                                    )}
+                                    {[...fields].map(field => {
+                                        if (item[field] !== undefined && item[field] !== null) {
+                                            console.log('attempt', item[field].attempt, 'value', item[field].value);
+                                        }
+                                        return (
+                                            <td key={field}>
+                                                {item[field] === undefined || item[field] == null ? '' : Array.isArray(item[field].value) ? <Arr arr={item[field].value} /> : item[field].value}
+                                                {" "}
+                                                <span style={{ textDecoration: "line-through", color: "gray" }}>
+                                                    {(item[field] === undefined || item[field] == null || item[field].attempt == undefined || JSON.stringify(item[field].attempt) == JSON.stringify(item[field].value)) ? '' : Array.isArray(item[field].attempt) ? <AttemptArr arr={item[field].value} attempt={item[field].attempt} /> : item[field].attempt}
+                                                </span>
+                                            </td>
+                                        )
+                                    })}
                                 </tr>
                             ))}
                         </tbody>
                         <tfoot>
                             <tr className="function-history-tfoot-tr">
                                 {[...fields].map(field => {
-                                    return (data[data.length - 1].step === stepNum) ? <td><input type="text" onChange={(e) => handleInputChange(e, field)}/> </td>:
+                                    return (data[data.length - 1].step === stepNum && data[data.length - 1][field] !== null) ? <td> {Array.isArray(data[data.length - 1][field].value) ? <InputArr arr={data[data.length - 1][field].value} handleInputChange={handleInputChange} field={field} attempt={data[data.length - 1][field].attempt}/> : <input type="text" onChange={(e) => handleInputChange(e, field)} />} </td> :
                                         <td key={field} className={`center-align ${data[data.length - 1][field] !== null ? 'changed-last' : 'not-changed-last'}`}>
-                                            {currentData[field] === undefined ? '' : Array.isArray(currentData[field]) ? <Arr arr={currentData[field]} /> : currentData[field]}
+                                            {currentData[field] === undefined || currentData[field] == null ? '' : Array.isArray(currentData[field].value) ? <Arr arr={currentData[field].value} /> : currentData[field].value}
+                                            {" "}
+                                            <span style={{ textDecoration: "line-through", color: "gray" }}>
+                                                {(currentData[field] === undefined || currentData[field] == null || currentData[field].attempt == undefined || currentData[field].attempt == currentData[field].value || data[data.length - 1][field] == null) ? '' : Array.isArray(currentData[field].attempt) ? <Arr arr={currentData[field].attempt} /> : currentData[field].attempt}
+                                            </span>
                                         </td>
                                 }
                                 )}

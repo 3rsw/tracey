@@ -32,10 +32,7 @@ const getTopics = async () => {
   return uniqueTopics;
 }
 
-const getTopicQns = (topic) => {
-  // TODO:
-}
 
 export default { 
-  getListQns, getQn, getStep, getTopics, getTopicQns
+  getListQns, getQn, getStep, getTopics
 }

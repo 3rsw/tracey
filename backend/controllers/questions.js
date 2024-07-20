@@ -11,17 +11,23 @@ questionsRouter.get('/', (request, response) => {
 
 // GET the information about a particular question
 questionsRouter.get('/:id', (request, response, next) => {
-  Question.findOne({'_id': request.params.id},
-                   {'name': 1, 'tags': 1, 'difficulty': 1, 'code': 1})
+  Question.findOne({'_id': request.params.id})
     .then(qn => {
       if (qn) {
-        response.json(qn)
+        const questionData = {
+          name: qn.name,
+          tags: qn.tags,
+          difficulty: qn.difficulty,
+          code: qn.code,
+          numberOfSteps: qn.trace.length
+        };
+        response.json(questionData);
       } else {
-        response.status(404).end()
+        response.status(404).end();
       }
     })
-    .catch(error => next(error))
-})
+    .catch(error => next(error));
+});
 
 // GET:
 // - the next step 

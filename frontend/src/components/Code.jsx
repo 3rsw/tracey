@@ -2,7 +2,7 @@ import Arrows from "./Arrows";
 import Line from "./Line";
 import Xarrow from "react-xarrows";
 
-const Code = ({ code, lineNum, boxes, branches, fetchNextStep, fetchPrevStep, allVarsHaveAttempt, mode }) => {
+const Code = ({ code, lineNum, boxes, branches, fetchNextStep, fetchPrevStep, allVarsHaveAttempt, mode, canFetchNext }) => {
   const lines = code.split("\n");
 
   return (
@@ -32,9 +32,11 @@ const Code = ({ code, lineNum, boxes, branches, fetchNextStep, fetchPrevStep, al
               <i className="material-icons">arrow_upward</i>
             </button>
           ) : null}
-          <button onClick={fetchNextStep} disabled={allVarsHaveAttempt === false ? true : false}>
-            <i className="material-icons">arrow_downward</i>
-          </button>
+          {canFetchNext ? (
+            <button onClick={fetchNextStep} disabled={allVarsHaveAttempt === false ? true : false}>
+              <i className="material-icons">arrow_downward</i>
+            </button>
+          ) : null}
         </div>
       </div>
       <Arrows branches={branches} lineNum={lineNum} />
