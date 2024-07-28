@@ -18,7 +18,7 @@ const Questions = () => {
     return (
         <div className="main-content">
             <NavBar />
-            <QuestionTable questions={questions}/>
+            <QuestionTable questions={questions} setQuestions={setQuestions}/>
             <Footer />
         </div>
     );

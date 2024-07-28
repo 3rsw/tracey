@@ -7,7 +7,7 @@ const HomePage = () => {
     return (
         <div className="main-content">
             <NavBar />
-            <div className="eighty-width">
+            <div className="eighty-width white-text">
                 <h4>An external code-tracing tool to scaffold introductory
                     computing learners using principles of cognitive load theory
                 </h4>

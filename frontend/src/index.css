@@ -1,5 +1,5 @@
 h1 {
-  color: darkorange;
+  color: darkblue;
   font-style: italic;
 }
 
@@ -24,6 +24,14 @@ html, body {
   margin: 0;
 }
 
+body {
+  background-color: #232323; /* grey darken-2 in Materialize CSS */
+}
+
+.monospace {
+  font-family: 'Courier New', Courier, monospace;
+}
+
 .main-content {
   min-height: 100vh;
   display: flex;
@@ -36,7 +44,7 @@ html, body {
 
 .function-history-tfoot-tr {
   margin-top:10%;
-  border: 2px solid orange;
+  border: 2px solid blue;
   border-radius: 10px;
   color: grey;
 }
@@ -51,7 +59,7 @@ html, body {
 
 .changed-this-step {
   font-weight: bold;
-  color: darkorange;
+  color: blue;
 }
 
 .changed-last {
@@ -127,7 +135,7 @@ html, body {
 }
 
 .top-of-stack {
-  border: 2px solid orange;
+  border: 3px solid blue;
 }
 
 .not-top-of-stack {
@@ -138,26 +146,47 @@ html, body {
   border: 2px solid black;
 }
 .top-of-stack tfoot.function-history-tfoot-tr {
-  border: 2px solid orange;
+  border: 2px solid blue;
 }
 
 
 .btn.selected {
-  background-color: darkorange;
+  background-color: darkblue;
   font-weight: bold;
   text-decoration: underline;
   margin: 5px;
 }
 .btn.unselected {
-  background-color: darkorange;
+  background-color: darkblue;
   margin: 5px;
 }
 
 button.btn:disabled {
-  background-color: darkorange !important;
+  background-color: hsl(240, 25%, 27%) !important; /*Greyer dark-blue*/
   color: white !important;
 }
 
 .btn:hover {
-  background-color: orange !important;
+  background-color: blue !important;
+}
+
+
+.link {
+  color: blue;
+  text-decoration: underline;
+}
+
+.btn:focus {
+  background-color: darkblue !important;
+  box-shadow: none !important;
+}
+
+.flashing-cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
 }

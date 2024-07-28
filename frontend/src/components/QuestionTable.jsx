@@ -4,7 +4,9 @@ import Footer from '../components/Footer';
 import qnService from '../services/qn';
 import { Link } from 'react-router-dom';
 
-const QuestionTable = ({ questions }) => {
+const QuestionTable = ({ questions, setQuestions }) => {
+
+    const [sortOrder, setSortOrder] = useState(true);
 
     const sortByDifficulty = () => {
         const sortedQuestions = [...questions].sort((a, b) => sortOrder ? a.difficulty - b.difficulty : b.difficulty - a.difficulty);
@@ -19,7 +21,7 @@ const QuestionTable = ({ questions }) => {
     };
 
     return (
-        <table className="centered" style={{ width: '80%', margin: '0 auto' }}>
+        <table className="centered eighty-width" style={{ backgroundColor: 'white'}}>
             <thead>
                 <tr>
                     <th>
@@ -39,12 +41,12 @@ const QuestionTable = ({ questions }) => {
                 {questions.map((question, index) => (
                     <tr key={index}>
                         <td>{question.name}</td>
-                        <td><Link to={`/question/${question._id}/walkthrough`}>walkthrough</Link></td>
-                        <td><Link to={`/question/${question._id}/quiz`}>quiz</Link></td>
+                        <td><Link to={`/question/${question._id}/walkthrough`} className={"link"}>walkthrough</Link></td>
+                        <td><Link to={`/question/${question._id}/quiz`} className={"link"}>quiz</Link></td>
                         <td> {"*".repeat(question.difficulty)}</td>
                         <td>{question.tags.map((tag, index) => (
                             <span key={index}>
-                                <Link to={`/topic/${tag}`}>{tag}</Link>
+                                <Link to={`/topic/${tag}`} className={"link"}>{tag}</Link>
                                 {index < question.tags.length - 1 ? ", " : ""}
                             </span>
                         ))}</td>

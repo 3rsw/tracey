@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import Code from "../components/Code";
+import QuizCode from "../components/QuizCode";
 import Footer from "../components/Footer";
 import QuestionBanner from "../components/QuestionBanner";
-import Stdout from "../components/Stdout";
+import QuizStdout from "../components/QuizStdout";
 import Histories from "../components/Histories";
 import qnService from "../services/qn";
 import NavBar from "../components/NavBar";
@@ -28,10 +28,19 @@ const Quiz = () => {
   const [lineNum, setLineNum] = useState(1);
 
   const [branches, setBranches] = useState(null);
+  const [prevBranches, setPrevBranches] = useState(null);
 
-  const [stdout, setStdout] = useState("");
+  const [clickedLine, setClickedLine] = useState(null);
+  const [prevClickedLine, setPrevClickedLine] = useState(null);
+
+  const [stdout, setStdout] = useState(""); // Current stdout for this step, does include all the previous stdout too
+  const [prevStdout, setPrevStdout] = useState(""); // Stdout minus that entered in the current step
+  const [enteredStdout, setEnteredStdout] = useState(""); // Stdout entered by user, does not include any history
+  const [prevEnteredStdout, setPrevEnteredStdout] = useState(""); // Historical stdout entered by user, doesn't include any history
 
   const [allVarsHaveAttempt, setAllVarsHaveAttempt] = useState(true);
+  const [allArrowsHaveAttempt, setAllArrowsHaveAttempt] = useState(true);
+  const [allStdoutHaveAttempt, setAllStdoutHaveAttempt] = useState(true);
 
   // Stack of the stackFrames of the returned functions
   // so that the back buttons work if there are functions involved
@@ -45,14 +54,9 @@ const Quiz = () => {
   }, []);
 
   useEffect(() => {
-    console.log("dataHistory changed!");
-    console.log("dataHistory:", dataHistory);
     for (let stackFrame of dataHistory) {
-        console.log("stackFrame:", stackFrame);
       for (let localVar in stackFrame.vars) {
-        console.log("localVar:", localVar);
         for (let entry of stackFrame.vars[localVar]) {
-            console.log("entry:", entry);
           if (entry.attempt === undefined) {
             setAllVarsHaveAttempt(false);
             return;
@@ -71,9 +75,62 @@ const Quiz = () => {
     setAllVarsHaveAttempt(true);
   }, [dataHistory]);
 
+  useEffect(() => {
+    if (branches != null && clickedLine == null) {
+      setAllArrowsHaveAttempt(false);
+    } else {
+      setAllArrowsHaveAttempt(true);
+    }
+  }, [branches, clickedLine]);
+
+  useEffect(() => {
+    if (stdout.length == 0) {
+      setAllStdoutHaveAttempt(true);
+    } else if ((prevEnteredStdout + enteredStdout).length == 0) {
+      setAllStdoutHaveAttempt(false);
+    } else {
+      // Make sure the number of segments separated by a newline in enteredStdout is the same as stdout
+      // get rid of any segments that are of length 0 at the very end
+      let enteredStdoutSegments = (prevEnteredStdout + enteredStdout).split("\n"); //Lenient newline addition should make this fine
+      let stdoutSegments = stdout.split("\n");
+      enteredStdoutSegments = removeTrailingEmptySegments(enteredStdoutSegments);
+      stdoutSegments = removeTrailingEmptySegments(stdoutSegments);
+
+      console.log("enteredStdoutSegments", enteredStdoutSegments);
+      console.log("stdoutSegments", stdoutSegments);
+      if (enteredStdoutSegments.length < stdoutSegments.length) {
+        setAllStdoutHaveAttempt(false);
+      } else {
+        setAllStdoutHaveAttempt(true);
+      }
+    }
+  }, [stdout, enteredStdout]);
+
+  const removeTrailingEmptySegments = (segments) => {
+    while (segments.length > 0 && segments[segments.length - 1].length === 0) {
+        segments.pop();
+    }
+    return segments;
+}
+
+
 const fetchNextStep = async () => {
   if (qn.numberOfSteps - 1 <= currStepNum) {
     return;
+  }
+
+  setPrevBranches(branches);
+  setPrevClickedLine(clickedLine);
+  setClickedLine(null);
+  setPrevStdout(stdout);
+  setEnteredStdout("");
+  // Lenient end of line newline addition
+  // Students likely have the assumption that only filling out the single line is enough to imply newline
+  // add a '\n' to the end of enteredStdout if it doesn't have one but stdout does
+  if (enteredStdout.length > 0 && enteredStdout[enteredStdout.length - 1] !== '\n' && stdout[stdout.length - 1] === '\n') {
+    setPrevEnteredStdout(prevEnteredStdout + enteredStdout + '\n');
+  } else {
+    setPrevEnteredStdout(prevEnteredStdout + enteredStdout);
   }
 
   // Get next step (for flow etc)
@@ -158,54 +215,8 @@ const fetchNextStep = async () => {
   setCurrStepNum(currStepNum + 1);
 };
 
-  const fetchPrevStep = async () => {
-    let tempDataHistory = [ ...dataHistory ];
 
-    if (currStepNum != 0) {
-      // Get previous step (for flow etc)
-      qnService.getStep(qnId, currStepNum - 1).then(stepData => {
-        //Check stack frame matches
-        if (stepData.stack_to_render.length < dataHistory.length) { // We had entered a function in the previous step
-          tempDataHistory.pop();
-        } else if (stepData.stack_to_render.length > dataHistory.length) { // We had returned from a function in the previous step
-          //tempDataHistory.push({ func_name: stepData.stack_to_render[stepData.stack_to_render.length - 1].func_name, vars: {} })
-          tempDataHistory.push(returnedFunctions[returnedFunctions.length - 1]);
-          setReturnedFunctions(...returnedFunctions.slice(0, -1));
-        }
-        setLineNum(stepData.line);
-        setStdout(stepData.stdout);
-        if ('branch' in stepData) {
-          setBranches(stepData.branch);
-        }
-        else {
-          setBranches(null);
-        }
-      });
-
-      //Get current? step (for stdout)
-      qnService.getStep(qnId, currStepNum).then(stepData => {
-        setStdout(stepData.stdout);
-      });
-
-      // Remove any variables that were added in the "current" step
-      // Need to go through all stack frames because pointers
-      for (let currStackFrame of tempDataHistory) {
-        for (let localVar in currStackFrame.vars) {
-          let stackFrameVars = currStackFrame.vars;
-            if (stackFrameVars[localVar][stackFrameVars[localVar].length - 1].step >= currStepNum) {
-              stackFrameVars[localVar].pop();
-            }
-            if (stackFrameVars[localVar].length === 0) {
-              delete stackFrameVars[localVar];
-            }
-        }
-      }
-
-      console.log("step:", currStepNum - 1)
-      setDataHistory(tempDataHistory);
-      setCurrStepNum(currStepNum - 1);
-    }
-  };
+// Don't need to fetch previous step in Quiz
 
 const boxes = [
                 {color: "green", startCol: 13, endcol: 27},
@@ -219,14 +230,14 @@ const boxes = [
         <QuestionBanner questionName={qn.name} difficulty={qn.difficulty} tags={qn.tags} mode={"quiz"} qnId={qnId}/>
         <div className="row">
           <div className="col s6">
-            <Code code={qn.code} lineNum={lineNum} branches={branches} boxes={boxes} fetchNextStep={fetchNextStep} fetchPrevStep={fetchPrevStep} allVarsHaveAttempt={allVarsHaveAttempt} mode={"quiz"} canFetchNext={qn.numberOfSteps - 1 > currStepNum} />
+            <QuizCode code={qn.code} lineNum={lineNum} branches={branches} prevBranches={prevBranches} clickedLine={clickedLine} setClickedLine={setClickedLine} prevClickedLine={prevClickedLine} boxes={boxes} fetchNextStep={fetchNextStep} allInputsHaveAttempt={allVarsHaveAttempt && allArrowsHaveAttempt && allStdoutHaveAttempt} canFetchNext={qn.numberOfSteps - 1 > currStepNum} />
           </div>
           <div className="col s6">
             <Histories histories={dataHistory} stepNum={currStepNum} mode={"quiz"} setDataHistory={setDataHistory} />
           </div>
         </div>
         <div className="row">
-          <Stdout stdout={stdout}/>
+          <QuizStdout needsStdout={stdout != "" && prevStdout.length != stdout.length} setEnteredStdout={setEnteredStdout} enteredStdout={enteredStdout} prevEnteredStdout={prevEnteredStdout} prevStdout={prevStdout} allStdoutHaveAttempt={allStdoutHaveAttempt}/>
         </div>
       </div>
       <Footer />

@@ -19,7 +19,7 @@ const Topic = () => {
     return (
         <div className="main-content">
             <NavBar />
-            <h3 className="eighty-width">{topic}</h3>
+            <h3 className="eighty-width blue-text text-lighten-4" >{topic}</h3>
             {questions.length === 0 
                 ? <p className="eighty-width">No matching questions for topic {topic}</p> 
                 : <QuestionTable questions={questions}/>

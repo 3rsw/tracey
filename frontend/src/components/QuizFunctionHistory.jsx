@@ -78,9 +78,9 @@ const QuizFunctionHistory = ({ histories, historiesIndex, history, stepNum, topO
 
     if (data.length !== 0) {
         return (
-            <div ref={scrollRef} className={`${topOfStack ? 'top-of-stack' : 'not-top-of-stack'}`} style={{ display: 'flex', flexDirection: 'column', marginBottom: "5px" }}>
+            <div ref={scrollRef} className={`${topOfStack ? 'top-of-stack' : 'not-top-of-stack'}`} style={{ display: 'flex', flexDirection: 'column', marginBottom: "5px", backgroundColor: 'white'}}>
                 <div style={{ display: 'flex' }}>
-                    <span style={{ fontWeight: "bold", color: topOfStack ? 'orange' : 'inherit' }}>{functionName}</span>
+                    <span style={{ fontWeight: "bold", color: topOfStack ? 'blue' : 'inherit' }}>{functionName}</span>
                 </div>
                 <div style={{ display: 'flex' }}>
                     <table className="centered" style={{ tableLayout: "fixed", margin: "5px" }}>
@@ -101,7 +101,7 @@ const QuizFunctionHistory = ({ histories, historiesIndex, history, stepNum, topO
                                                 {item[field] === undefined || item[field] == null ? '' : Array.isArray(item[field].value) ? <Arr arr={item[field].value} /> : item[field].value}
                                                 {" "}
                                                 <span style={{ textDecoration: "line-through", color: "gray" }}>
-                                                    {(item[field] === undefined || item[field] == null || item[field].attempt == undefined || JSON.stringify(item[field].attempt) == JSON.stringify(item[field].value)) ? '' : Array.isArray(item[field].attempt) ? <AttemptArr arr={item[field].value} attempt={item[field].attempt} /> : item[field].attempt}
+                                                    {(item[field] === undefined || item[field] == null || item[field].attempt == undefined || (typeof item[field].attempt === 'object' ? JSON.stringify(item[field].attempt) : item[field].attempt) == (typeof item[field].value === 'object' ? JSON.stringify(item[field].value) : item[field].value)) ? '' : Array.isArray(item[field].attempt) ? <AttemptArr arr={item[field].value} attempt={item[field].attempt} /> : item[field].attempt}
                                                 </span>
                                             </td>
                                         )
@@ -112,7 +112,7 @@ const QuizFunctionHistory = ({ histories, historiesIndex, history, stepNum, topO
                         <tfoot>
                             <tr className="function-history-tfoot-tr">
                                 {[...fields].map(field => {
-                                    return (data[data.length - 1].step === stepNum && data[data.length - 1][field] !== null) ? <td> {Array.isArray(data[data.length - 1][field].value) ? <InputArr arr={data[data.length - 1][field].value} handleInputChange={handleInputChange} field={field} attempt={data[data.length - 1][field].attempt}/> : <input type="text" onChange={(e) => handleInputChange(e, field)} />} </td> :
+                                    return (data[data.length - 1].step === stepNum && data[data.length - 1][field] !== null) ? <td> {Array.isArray(data[data.length - 1][field].value) ? <InputArr arr={data[data.length - 1][field].value} handleInputChange={handleInputChange} field={field} attempt={data[data.length - 1][field].attempt} /> : <input type="text" onChange={(e) => handleInputChange(e, field)} />} </td> :
                                         <td key={field} className={`center-align ${data[data.length - 1][field] !== null ? 'changed-last' : 'not-changed-last'}`}>
                                             {currentData[field] === undefined || currentData[field] == null ? '' : Array.isArray(currentData[field].value) ? <Arr arr={currentData[field].value} /> : currentData[field].value}
                                             {" "}

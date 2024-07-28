@@ -41,8 +41,12 @@ const InputArr = ({ arr, handleInputChange, field, attempt }) => {
                         let maxLength;
                         if (typeof item === "number") {
                             inputType = "number";
-                        } else if (typeof item === "string" && item.length === 1) {
-                            maxLength = 1;
+                        } else if (typeof item === "string") {
+                            const escapeSequenceCount = (item.match(/\\./g) || []).length;
+                            const nonEscapeSequenceCount = item.length - escapeSequenceCount * 2;
+                            if (nonEscapeSequenceCount + escapeSequenceCount === 1) {
+                                maxLength = 1;
+                            }
                         }
                         return (
                             <td key={index} className="arr-data">
@@ -50,8 +54,22 @@ const InputArr = ({ arr, handleInputChange, field, attempt }) => {
                                     {inputType == "text" ? <span>'</span> : null}
                                     <input
                                         type={inputType}
-                                        maxLength={maxLength}
-                                        onChange={(e) => handleArrayChange(e, index)}
+                                        onChange={(e) => {
+                                            const value = e.target.value;
+                                            const escapeSequenceCount = (value.match(/\\./g) || []).length;
+                                            const nonEscapeSequenceCount = value.length - escapeSequenceCount * 2;
+                                            if (maxLength === 1 && escapeSequenceCount > 0) {
+                                                if (value.length > 2) {
+                                                    e.target.value = value.slice(0, 2);
+                                                }
+                                                handleArrayChange(e, index);
+                                            } else if (nonEscapeSequenceCount + escapeSequenceCount > maxLength) {
+                                                e.target.value = value.slice(0, maxLength);
+                                                handleArrayChange(e, index);
+                                            } else {
+                                                handleArrayChange(e, index);
+                                            }
+                                        }}
                                         onKeyPress={(e) => {
                                             if (inputType === "number" && !/[0-9]/.test(e.key)) {
                                                 e.preventDefault();

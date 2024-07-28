@@ -2,7 +2,7 @@ import CodeEditor, { SelectionText } from "@uiw/react-textarea-code-editor";
 import rehypePrism from "rehype-prism-plus";
 import rehypeRewrite from "rehype-rewrite";
 
-const Line = ({ line, index, selected, boxes }) => {
+const Line = ({ line, index, isCurrentLine, boxes }) => {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
         <span
@@ -14,17 +14,18 @@ const Line = ({ line, index, selected, boxes }) => {
             lineHeight: "1",
           }}
         >
-          {selected ? "➤" : ""}
+          {isCurrentLine ? "➤" : ""}
         </span>
         <span id={`falseline${index + 1}`} style={{width: "10px"}}></span>
         <span id={`trueline${index + 1}`}  style={{width: "10px"}}></span>
         <div id={`line${index + 1}`} style={{ display: "inline-flex", alignItems: "center" }}>
             <CodeEditor
             value={line}
+            data-color-mode="light"
             language="c"
             padding={1}
             readOnly={true}
-            style={{ backgroundColor: "#ffe0b2" }}
+            style={{ backgroundColor: "#EEEEEE" }}
             rehypePlugins={[
                 [rehypePrism, { ignoreMissing: true }],
                 [

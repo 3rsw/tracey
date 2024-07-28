@@ -14,19 +14,21 @@ const Topics = () => {
         });
     }, []);
 
-
     return (
         <div className="main-content">
             <NavBar />
             <div className="eighty-width">
-                <h3>Topics</h3>
-                <ul>
+                <div className="row">
                     {topics.map((topic, index) => (
-                        <li key={index}>
-                            <Link to={`/topic/${topic}`}>{topic}</Link>
-                        </li>
+                        <div className="col s2" key={index}>
+                            <Link to={`/topic/${topic}`}>
+                                <div className="card-panel blue darken-4 center-align white-text">
+                                    {topic}
+                                </div>
+                            </Link>
+                        </div>
                     ))}
-                </ul>
+                </div>
             </div>
             <Footer />
         </div>

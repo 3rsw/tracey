@@ -60,9 +60,9 @@ const FunctionHistory = ({ history, stepNum, topOfStack, functionName }) => {
 
     if (data.length !== 0) {
         return (
-            <div ref={scrollRef} className={`${topOfStack ? 'top-of-stack' : 'not-top-of-stack'}`} style={{ display: 'flex', flexDirection: 'column', marginBottom: "5px" }}>
+            <div ref={scrollRef} className={`${topOfStack ? 'top-of-stack' : 'not-top-of-stack'}`} style={{ display: 'flex', flexDirection: 'column', marginBottom: "5px", backgroundColor: 'white' }}>
                 <div style={{ display: 'flex' }}>
-                    <span style={{ fontWeight: "bold", color: topOfStack ? 'orange' : 'inherit' }}>{functionName}</span>
+                    <span style={{ fontWeight: "bold", color: topOfStack ? 'blue' : 'inherit' }}>{functionName}</span>
                 </div>
                 <div style={{ display: 'flex' }}>
                     <table className="centered" style={{ tableLayout: "fixed", margin: "5px" }}>

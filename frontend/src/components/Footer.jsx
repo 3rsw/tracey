@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="page-footer orange darken-4 footer">
+    <footer className="page-footer blue darken-4 footer">
       <div className="container">
         <div className="row valign-wrapper">
           <div className="col s6 right">

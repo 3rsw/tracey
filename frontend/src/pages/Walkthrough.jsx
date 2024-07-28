@@ -190,7 +190,7 @@ const boxes = [
         <QuestionBanner questionName={qn.name} difficulty={qn.difficulty} tags={qn.tags} mode={"walkthrough"} qnId={qnId}/>
         <div className="row">
           <div className="col s6">
-            <Code code={qn.code} lineNum={lineNum} branches={branches} boxes={boxes} fetchNextStep={fetchNextStep} mode={"walkthrough"} fetchPrevStep={fetchPrevStep} allVarsHaveAttempt={true} canFetchNext={qn.numberOfSteps - 1 > currStepNum} />
+            <Code code={qn.code} lineNum={lineNum} branches={branches} boxes={boxes} fetchNextStep={fetchNextStep} fetchPrevStep={fetchPrevStep} allVarsHaveAttempt={true} canFetchNext={qn.numberOfSteps - 1 > currStepNum} canFetchPrev={currStepNum != 0}/>
           </div>
           <div className="col s6">
             <Histories histories={dataHistory} stepNum={currStepNum} mode={"walkthrough"}/>
