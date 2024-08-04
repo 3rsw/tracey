@@ -15,7 +15,7 @@ const QuizLine = ({ line, index, isCurrentLine, isHovered, isClicked, boxes, pre
       backgroundColor = 'lightgreen';
       color = 'green';
     } else if (prevClickedLine === index + 1) {
-      backgroundColor = 'orange';
+      backgroundColor = '#FFB6B6';
     }
   }
 

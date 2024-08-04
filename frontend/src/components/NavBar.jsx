@@ -6,7 +6,7 @@ const NavBar = () => {
     return (
         <nav>
             <div className="nav-wrapper blue darken-2">
-                <Link to="/" className="left flow-text">Tracey</Link>
+                <Link to="/" className="left flow-text" style={{paddingLeft: '10px'}}>Tracey</Link>
                 <ul className="right">
                     <li>
                         <Link to="/topics" className={`btn ${location.pathname === '/topics' ? 'selected' : 'unselected'}`}>
