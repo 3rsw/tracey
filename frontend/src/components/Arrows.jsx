@@ -11,7 +11,7 @@ const Arrows = ({ lineNum, branches }) => {
           startAnchor="left"
           endAnchor="left"
           path={"straight"}
-          color="green"
+          color="grey"
           showHead={false}
         />
         <Xarrow
@@ -21,7 +21,7 @@ const Arrows = ({ lineNum, branches }) => {
           startAnchor="left"
           endAnchor="left"
           path={"straight"}
-          color="green"
+          color="grey"
         />
 
         <Xarrow
@@ -31,7 +31,7 @@ const Arrows = ({ lineNum, branches }) => {
           startAnchor="left"
           endAnchor="left"
           path={"straight"}
-          color="red"
+          color="grey"
           showHead={false}
         />
         <Xarrow
@@ -41,7 +41,7 @@ const Arrows = ({ lineNum, branches }) => {
           startAnchor="left"
           endAnchor="left"
           path={"straight"}
-          color="red"
+          color="grey"
         />
         <Xarrow
           start={`arrowline${lineNum}`}

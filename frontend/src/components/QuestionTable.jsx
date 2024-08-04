@@ -21,8 +21,9 @@ const QuestionTable = ({ questions, setQuestions }) => {
     };
 
     return (
-        <table className="centered eighty-width" style={{ backgroundColor: 'white'}}>
-            <thead>
+        <div style={{ overflow: 'auto', maxHeight: '80vh' }}>
+        <table className="centered eighty-width" style={{ backgroundColor: 'white', display: 'block' }}>
+            <thead style={{ display: 'table', width: '100%', tableLayout: 'fixed' }}>
                 <tr>
                     <th>
                         Name
@@ -37,9 +38,9 @@ const QuestionTable = ({ questions, setQuestions }) => {
                     <th>Topic</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style={{ display: 'block', overflow: 'auto', maxHeight: '500px', width: '100%', tableLayout: 'fixed' }}>
                 {questions.map((question, index) => (
-                    <tr key={index}>
+                    <tr key={index} style={{ display: 'table', width: '100%', tableLayout: 'fixed' }}>
                         <td>{question.name}</td>
                         <td><Link to={`/question/${question._id}/walkthrough`} className={"link"}>walkthrough</Link></td>
                         <td><Link to={`/question/${question._id}/quiz`} className={"link"}>quiz</Link></td>
@@ -54,7 +55,7 @@ const QuestionTable = ({ questions, setQuestions }) => {
                 ))}
             </tbody>
         </table>
-
+        </div>
     );
 };
 

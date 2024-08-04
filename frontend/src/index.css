@@ -40,6 +40,18 @@ body {
 
 .footer {
   margin-top: auto;
+  max-height: 8vh;
+  display: flex;
+  align-items: center; /* Vertically align text */
+}
+
+footer {
+  max-height: 8vh;
+  overflow: clip;
+  font-size: clamp(0.8rem, 1vh, 1rem);
+  display: flex;
+  align-items: center; /* Vertically align text */
+  white-space: nowrap; /* Prevent text from wrapping */
 }
 
 .function-history-tfoot-tr {
@@ -74,7 +86,7 @@ body {
 
 .scrollable-div {
   overflow-y: auto;
-  max-height: 55vh;
+  max-height: 60vh;
 }
 
 .arr-table {
@@ -187,6 +199,11 @@ button.btn:disabled {
 
 .flashing-cursor {
   animation: blink 1s infinite;
+}
+
+
+.full-height {
+  height: 100%;
 }
 
 @keyframes blink {

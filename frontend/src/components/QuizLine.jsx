@@ -43,7 +43,7 @@ const QuizLine = ({ line, index, isCurrentLine, isHovered, isClicked, boxes, pre
           language="c"
           padding={1}
           readOnly={true}
-          style={{ backgroundColor: backgroundColor, fontWeight: isClicked ? "bold" : "normal" }}
+          style={{ backgroundColor: backgroundColor, fontWeight: isHovered ? "bold" : "normal" }}
           rehypePlugins={[
             [rehypePrism, { ignoreMissing: true }],
             [

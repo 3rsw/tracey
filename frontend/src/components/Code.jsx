@@ -7,8 +7,7 @@ const Code = ({ code, lineNum, boxes, branches, fetchNextStep, fetchPrevStep, al
 
   return (
     <div className="card grey lighten-3 text-white code" style={{ position: 'relative' }}>
-      <div className="row valign-wrapper" style={{ position: 'relative' }}>
-        <div className="col" style={{ padding: "10px" }}>
+        <div className="scrollable-div" style={{ padding: "10px", position: 'relative' }}>
           {lines.map((line, index) => (
             <Line
               key={index}
@@ -18,16 +17,19 @@ const Code = ({ code, lineNum, boxes, branches, fetchNextStep, fetchPrevStep, al
               boxes={boxes}
             />
           ))}
+          <Arrows branches={branches} lineNum={lineNum} />
         </div>
         <div
-          className="col s1 valign-wrapper"
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-end",
+            position: 'absolute',
+            top: '50%',
+            right: 0,
+            transform: 'translateY(-50%)',
           }}
         >
-
           <button onClick={fetchPrevStep} className="btn unselected" style={{visibility: !canFetchPrev ? 'hidden' : 'visible'}}>
             <i className="material-icons">arrow_upward</i>
           </button>
@@ -36,8 +38,6 @@ const Code = ({ code, lineNum, boxes, branches, fetchNextStep, fetchPrevStep, al
             <i className="material-icons">arrow_downward</i>
           </button>
         </div>
-      </div>
-      <Arrows branches={branches} lineNum={lineNum} />
     </div>
   );
 };
