@@ -135,7 +135,7 @@ body {
 }
 
 .top-of-stack {
-  border: 3px solid blue;
+  border: 4px solid blue;
 }
 
 .not-top-of-stack {
@@ -162,7 +162,7 @@ body {
 }
 
 button.btn:disabled {
-  background-color: hsl(240, 25%, 27%) !important; /*Greyer dark-blue*/
+  background-color: hsl(240, 25%, 57%) !important; /*Greyer dark-blue*/
   color: white !important;
 }
 
@@ -170,6 +170,10 @@ button.btn:disabled {
   background-color: blue !important;
 }
 
+.light-link {
+  color: lightblue;
+  text-decoration: underline;
+}
 
 .link {
   color: blue;

@@ -11,7 +11,7 @@ const HomePage = () => {
                 <h4>An external code-tracing tool to scaffold introductory
                     computing learners using principles of cognitive load theory
                 </h4>
-                <h5>Go to <Link to="/topics">topics</Link> or <Link to="/questions">questions</Link> to get started</h5>
+                <h5>Go to <Link className='light-link' to="/topics">topics</Link> or <Link className='light-link' to="/questions">questions</Link> to get started</h5>
             </div>
             <Footer />
         </div>

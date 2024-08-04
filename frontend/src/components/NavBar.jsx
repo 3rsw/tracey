@@ -6,8 +6,8 @@ const NavBar = () => {
     return (
         <nav>
             <div className="nav-wrapper blue darken-2">
-                <Link to="/" className="brand-logo">Tracey</Link>
-                <ul className="right hide-on-med-and-down">
+                <Link to="/" className="left flow-text">Tracey</Link>
+                <ul className="right">
                     <li>
                         <Link to="/topics" className={`btn ${location.pathname === '/topics' ? 'selected' : 'unselected'}`}>
                             Topics
