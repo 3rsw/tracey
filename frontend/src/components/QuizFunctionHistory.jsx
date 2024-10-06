@@ -7,13 +7,30 @@ const QuizFunctionHistory = ({ histories, historiesIndex, history, stepNum, topO
 
     const scrollRef = useRef();
 
+    // Initialize the data array with all fields set to undefined
+    let data = [];
+
     console.log("history:", history);
 
+    // Scrolls to the bottom of the history when it is updated
     useEffect(() => {
         if (scrollRef.current) {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         }
     }, [history]);
+
+    // Deals with uninitialized variables so they don't need to be entered by the student
+    useEffect(() => {
+        const lastData = data[data.length - 1];
+        for (let field in lastData) {
+            const lastDataField = lastData[field];
+            if (lastDataField && lastDataField.value === "<UNINITIALIZED>") {
+                let newHistories = [...histories];
+                newHistories[historiesIndex].vars[field][newHistories[historiesIndex].vars[field].length - 1].attempt = "<UNINITIALIZED>";
+                setDataHistory(newHistories);
+            }
+        }
+    }, [data]);
 
     const handleInputChange = (e, varName) => {
         let attempt = e.target.value;
@@ -37,8 +54,6 @@ const QuizFunctionHistory = ({ histories, historiesIndex, history, stepNum, topO
     flatData.sort((a, b) => a.step - b.step);
     console.log("flatData:", flatData);
 
-    // Initialize the data array with all fields set to undefined
-    let data = [];
 
     // Merge objects with the same 'step' property and set fields to null after their first instance
     let currentData = {};
@@ -78,7 +93,7 @@ const QuizFunctionHistory = ({ histories, historiesIndex, history, stepNum, topO
 
     if (data.length !== 0) {
         return (
-            <div ref={scrollRef} className={`${topOfStack ? 'top-of-stack' : 'not-top-of-stack'}`} style={{ display: 'flex', flexDirection: 'column', marginBottom: "5px", backgroundColor: 'white'}}>
+            <div ref={scrollRef} className={`${topOfStack ? 'top-of-stack' : 'not-top-of-stack'}`} style={{ display: 'flex', flexDirection: 'column', marginBottom: "5px", backgroundColor: 'white' }}>
                 <div style={{ display: 'flex' }}>
                     <span style={{ fontWeight: "bold", color: topOfStack ? 'blue' : 'inherit' }}>{functionName}</span>
                 </div>
@@ -112,16 +127,49 @@ const QuizFunctionHistory = ({ histories, historiesIndex, history, stepNum, topO
                         <tfoot>
                             <tr className="function-history-tfoot-tr">
                                 {[...fields].map(field => {
-                                    return (data[data.length - 1].step === stepNum && data[data.length - 1][field] !== null) ? <td> {Array.isArray(data[data.length - 1][field].value) ? <InputArr arr={data[data.length - 1][field].value} handleInputChange={handleInputChange} field={field} attempt={data[data.length - 1][field].attempt} /> : <input type="text" onChange={(e) => handleInputChange(e, field)} />} </td> :
-                                        <td key={field} className={`center-align ${data[data.length - 1][field] !== null ? 'changed-last' : 'not-changed-last'}`}>
-                                            {currentData[field] === undefined || currentData[field] == null ? '' : Array.isArray(currentData[field].value) ? <Arr arr={currentData[field].value} /> : currentData[field].value}
+                                    const lastData = data[data.length - 1];
+                                    const lastDataField = lastData[field];
+                                    const currentDataField = currentData[field];
+
+                                    if (lastData.step === stepNum && lastDataField !== null) {
+                                        const isValueArray = Array.isArray(lastDataField.value);
+                                        return ( // Needs input
+                                            <td  className={`center-align`}>
+                                                {
+                                                    (() => {
+                                                        if (lastDataField.value === "<UNINITIALIZED>") {
+                                                            return (
+                                                                <span>&lt;UNINITIALIZED&gt;</span>
+                                                            );
+                                                        } else if (isValueArray) {
+                                                            return <InputArr arr={lastDataField.value} handleInputChange={handleInputChange} field={field} attempt={lastDataField.attempt} />;
+                                                        } else {
+                                                            return <input type="text" onChange={(e) => handleInputChange(e, field)} />;
+                                                        }
+                                                    })()
+                                                }
+                                            </td>
+                                        );
+                                    }
+
+                                    const isCurrentDataFieldDefined = currentDataField !== undefined && currentDataField !== null;
+                                    const isValueArray = isCurrentDataFieldDefined && Array.isArray(currentDataField.value);
+                                    const isAttemptArray = isCurrentDataFieldDefined && Array.isArray(currentDataField.attempt);
+                                    const isAttemptSameAsValue = isCurrentDataFieldDefined && currentDataField.attempt == currentDataField.value;
+                                    const isLastDataFieldNull = lastDataField === null;
+
+                                    return ( // Doesn't need input
+                                        <td key={field} className={`center-align ${lastDataField !== null ? 'changed-last' : 'not-changed-last'}`}>
+                                            {isCurrentDataFieldDefined ? (isValueArray ? <Arr arr={currentDataField.value} /> : currentDataField.value) : ''}
                                             {" "}
                                             <span style={{ textDecoration: "line-through", color: "gray" }}>
-                                                {(currentData[field] === undefined || currentData[field] == null || currentData[field].attempt == undefined || currentData[field].attempt == currentData[field].value || data[data.length - 1][field] == null) ? '' : Array.isArray(currentData[field].attempt) ? <Arr arr={currentData[field].attempt} /> : currentData[field].attempt}
+                                                {isCurrentDataFieldDefined && !isAttemptSameAsValue && !isLastDataFieldNull
+                                                    ? (isAttemptArray ? <Arr arr={currentDataField.attempt} /> : currentDataField.attempt)
+                                                    : ''}
                                             </span>
                                         </td>
-                                }
-                                )}
+                                    );
+                                })}
                             </tr>
                         </tfoot>
                     </table>
