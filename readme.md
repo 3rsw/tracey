@@ -3,16 +3,19 @@
 
 1. Install [mongodb community edition](https://www.mongodb.com/docs/manual/administration/install-community/)
 
-2. Create the database
+2. Run mogodb
+`$ sudo systemctl start mongod` (for modern versions of linux)
+
+3. Create the database
 `$ mongoimport -d tracey -c questions --file=./db/questions/q1/question.json`
 
-3. Install the packages required for the backend
+4. Install the packages required for the backend
 `~/thesis_app/backend$ npm ci`
 
-4. Install the packages required for the frontend
+5. Install the packages required for the frontend
 `~/thesis_app/frontend$ npm ci`
 
-5. Create a .env file inside the backend folder with the contents
+6. Create a .env file inside the backend folder with the contents
 (this file is in the .gitignore so that if it eventually contains a password,
 it doesn't get pushed accidentally)
 
