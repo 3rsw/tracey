@@ -12,10 +12,10 @@ const QuizLine = ({ line, index, isCurrentLine, isHovered, isClicked, boxes, pre
   }
   if (prevBranches !== null) {
     if (isCurrentLine) {
-      backgroundColor = 'lightgreen';
+      backgroundColor = 'palegreen';
       color = 'green';
     } else if (prevClickedLine === index + 1) {
-      backgroundColor = '#FFB6B6';
+      backgroundColor = '#FFB9B9';
     }
   }
 

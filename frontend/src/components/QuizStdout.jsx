@@ -16,7 +16,7 @@ const QuizStdout = ( {needsStdout, setEnteredStdout, enteredStdout, prevEnteredS
                         <span style={{ color: 'lightgreen' }}>{(correctLines[i] || '')[j]}</span>
                     );
                     elements.push(
-                        <span style={{ color: 'red', textDecoration: 'line-through' }}>{(enteredLines[i] || '')[j] || '_'}</span>
+                        <span style={{ color: 'salmon', textDecoration: 'line-through' }}>{(enteredLines[i] || '')[j] || '_'}</span>
                     );
                 } else {
                     corrections.push(
